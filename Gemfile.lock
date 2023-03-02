@@ -177,6 +177,7 @@ GEM
     reline (0.3.2)
       io-console (~> 0.5)
     rexml (3.2.5)
+    rollbar (3.4.0)
     rubocop (1.47.0)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -249,6 +250,7 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  rollbar
   rubocop-rails
   selenium-webdriver
   sprockets-rails
