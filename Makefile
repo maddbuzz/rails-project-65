@@ -8,10 +8,11 @@ without-production:
 	bundle config set --local without 'production'
 
 install-without-production: without-production install
+	cp -f .env.example .env
 
 dev-start:
 	RAILS_ENV=development bin/rails assets:precompile
-	bin/rails s -p 3000 -b "127.0.0.1"
+	bin/rails s -p 3000 -b "localhost"
 
 start:
 	bin/rails s -p 3000 -b "0.0.0.0"

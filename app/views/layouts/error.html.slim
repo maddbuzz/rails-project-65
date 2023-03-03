@@ -1,0 +1,14 @@
+doctype html
+html
+
+  = render 'layouts/shared/head'
+
+  body.d-flex.flex-column.h-100
+
+    header
+      = render 'layouts/shared/nav'
+
+    main.flex-shrink-0
+      .container.my-4
+
+        = yield
