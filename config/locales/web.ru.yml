@@ -1,0 +1,8 @@
+ru:
+  web:
+    auth:
+      callback:
+        already_signed_in: Вы уже вошли ранее
+        signed_in: Выполнен вход
+      logout:
+        signed_out: Выполнен выход

@@ -6,6 +6,6 @@ module ApplicationHelper
       notice: 'alert-success',
       alert: 'alert-danger'
     }
-    "alert #{class_from_type[flash_type.to_sym]}"
+    "container alert #{class_from_type[flash_type.to_sym]} alert-dismissible fade show"
   end
 end
