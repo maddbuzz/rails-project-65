@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    attributes:
+      bulletin:
+        title: 'Заголовок'
+        description: 'Описание'
+        category: 'Категория'
+        image: 'Изображение'

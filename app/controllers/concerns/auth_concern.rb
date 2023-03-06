@@ -19,4 +19,10 @@ module AuthConcern
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
+
+  def authenticate_user!
+    return if signed_in?
+
+    redirect_to root_path, alert: t('web.auth.not_signed_in')
+  end
 end

@@ -21,6 +21,7 @@ console:
 	bin/rails console
 
 test:
+	clear
 	bin/rails db:environment:set RAILS_ENV=test
 	NODE_ENV=test bin/rails test
 	

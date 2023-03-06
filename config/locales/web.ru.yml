@@ -1,8 +1,30 @@
 ru:
   web:
+
     auth:
       callback:
         already_signed_in: Вы уже вошли ранее
         signed_in: Выполнен вход
       logout:
         signed_out: Выполнен выход
+      not_signed_in: Сначала вам необходимо войти в систему
+
+    bulletins:
+      index:
+        bulletins: Объявления
+        'Search by ad title': Искать по названию объявления
+        'Select category': Выбрать категорию
+        search: Искать
+        reset: Сброс
+      new:
+        title: Добавить объявление
+        submit: Создать объявление
+      edit:
+        title: Редактировать объявление
+        submit: Сохранить объявление
+      create:
+        success: Объявление создано
+      update:
+        success: Объявление обновлено
+      destroy:
+        success: Объявление удалено

@@ -1,0 +1,15 @@
+.mb-4
+  h2
+    = @bulletin.title
+  hr
+
+.row
+  .col-8
+    = image_tag(@bulletin.image, class: 'img-thumbnail mb-2') if @bulletin.image.attached?
+    p
+      = @bulletin.description
+  .col-4
+    .card
+      .card-body
+        h1.h5.card-title
+          = @bulletin.owner.name

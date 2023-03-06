@@ -41,5 +41,9 @@ module ActionDispatch
     def current_user
       @current_user ||= User.find_by(id: session[:user_id])
     end
+
+    def authenticate_user!
+      signed_in?
+    end
   end
 end

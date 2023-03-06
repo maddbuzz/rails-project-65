@@ -1,5 +1,6 @@
 [![Actions Status](https://github.com/maddbuzz/rails-project-65/actions/workflows/CI.yml/badge.svg)](https://github.com/maddbuzz/rails-project-65/actions/workflows/CI.yml)
 [![Actions Status](https://github.com/maddbuzz/rails-project-65/workflows/hexlet-check/badge.svg)](https://github.com/maddbuzz/rails-project-65/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7530decf6e6827fbb862/maintainability)](https://codeclimate.com/github/maddbuzz/rails-project-65/maintainability)
 
 # Bulletin board
 
