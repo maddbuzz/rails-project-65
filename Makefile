@@ -1,5 +1,5 @@
 install:
-	sudo apt install imagemagick libvips
+	sudo apt install -y imagemagick libvips
 	gem install slim_lint
 	bin/setup
 	bin/rails assets:precompile
