@@ -1,4 +1,5 @@
 install:
+	sudo apt install imagemagick libvips
 	gem install slim_lint
 	bin/setup
 	bin/rails assets:precompile
@@ -21,7 +22,7 @@ console:
 	bin/rails console
 
 test:
-	clear
+	clear || true
 	bin/rails db:environment:set RAILS_ENV=test
 	NODE_ENV=test bin/rails test
 	
