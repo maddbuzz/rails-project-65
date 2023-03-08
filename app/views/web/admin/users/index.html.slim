@@ -1,0 +1,17 @@
+h1.h2.mb-4
+  = t('.title')
+
+.row.mt-2
+  table.table.table-borderless
+    thead
+      tr
+        th
+          = t('.name')
+        th
+          = t('.email')
+        th
+          = t('.admin')
+        th
+          = t('.actions')
+    tbody
+      == render @users

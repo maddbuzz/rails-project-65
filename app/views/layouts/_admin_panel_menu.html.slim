@@ -1,0 +1,15 @@
+- common_classes = 'nav-link link-dark'
+
+ul.nav.flex-column.nav-pills
+  li.nav-item
+    = link_to admin_path, class: "#{common_classes} #{'active' if admin_url == url}" do
+      = t('.Ads on moderation')
+  li.nav-item
+    = link_to admin_bulletins_path, class: "#{common_classes} #{'active' if admin_bulletins_url == url}" do
+      = t('.All ads')
+  li.nav-item
+    = link_to admin_categories_path, class: "#{common_classes} #{'active' if admin_categories_url == url}" do
+      = t('.All categories')
+  li.nav-item
+    = link_to admin_users_path, class: "#{common_classes} #{'active' if admin_users_url == url}" do
+      = t('.Users')

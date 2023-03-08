@@ -1,0 +1,76 @@
+ru:
+  user_not_authenticated: Вам необходимо войти в систему для выполнения этого действия
+  user_not_authorized: Вы не авторизованы для выполнения этого действия
+  user_not_admin: Вам необходимо быть администратором для выполнения этого действия
+
+  web:
+    auth:
+      callback:
+        already_signed_in: Вы уже вошли ранее
+        signed_in: Выполнен вход
+      logout:
+        signed_out: Выполнен выход
+    bulletins:
+      index:
+        bulletins: Объявления
+        'Search by ad title': Искать по названию объявления
+        'Select category': Выбрать категорию
+        search: Искать
+        reset: Сброс
+      new:
+        title: Добавить объявление
+        submit: Создать объявление
+      edit:
+        title: Редактировать объявление
+        submit: Сохранить объявление
+      create:
+        success: Объявление создано
+      update:
+        success: Объявление обновлено
+      destroy:
+        success: Объявление удалено
+    
+    admin:
+      users:
+        index:
+          title: Пользователи
+          name: Имя
+          email: Email
+          admin: Админ
+          actions: Действия
+        destroy:
+          success: Пользователь успешно удалён
+        user:
+          edit: Изменить
+          delete: Удалить
+          confirm_delete: Подтверждаете удаление пользователя вместе со всеми его объявлениями?
+        edit:
+          title: Изменить права пользователя
+          submit: Сохранить изменения
+        update:
+          success: Изменения сохранены
+      categories:
+        index:
+          title: Категории
+          add_category: Добавить категорию
+          name: Название
+          actions: Действия
+        category:
+          edit: Редактировать
+          delete: Удалить
+          confirm_delete: Подтверждаете удаление?
+        create:
+          success: Категория успешно создана
+        destroy:
+          success: Категория успешно удалена
+          fail: Не удалось удалить категорию, так как она содержит объявления
+        update:
+          success: Категория успешно обновлена
+        new:
+          title: Новая категория
+          submit: Создать категорию
+        edit:
+          title: Редактировать категорию
+          submit: Сохранить категорию
+        form: 
+          placeholder: Название категории

@@ -6,6 +6,7 @@ module Web
     before_action :set_bulletin, only: %i[show edit update destroy]
 
     def index
+      authorize Bulletin
       @bulletins = Bulletin.order(created_at: :desc)
     end
 
@@ -13,12 +14,14 @@ module Web
 
     def new
       @bulletin = Bulletin.new
+      authorize @bulletin
     end
 
     def edit; end
 
     def create
       @bulletin = current_user.bulletins.new(bulletin_params)
+      authorize @bulletin
 
       respond_to do |format|
         if @bulletin.save
@@ -43,7 +46,7 @@ module Web
       @bulletin.destroy
 
       respond_to do |format|
-        format.html { redirect_to bulletins_url, notice: t('.success') }
+        format.html { redirect_to bulletins_url, status: :see_other, notice: t('.success') }
       end
     end
 
@@ -51,6 +54,7 @@ module Web
 
     def set_bulletin
       @bulletin = Bulletin.find(params[:id])
+      authorize @bulletin
     end
 
     def bulletin_params

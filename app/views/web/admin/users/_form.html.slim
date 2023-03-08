@@ -1,0 +1,14 @@
+h1.h2.mb-4
+  = title
+
+= simple_form_for(@user, url:) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :name, label: false, disabled: true, input_html: { class: 'text-muted' }
+    = f.input :email, label: false, disabled: true, input_html: { class: 'text-muted' }
+    = f.input :admin
+
+  .form-actions
+    = f.button :submit, submit, class: 'btn btn-primary mt-2'

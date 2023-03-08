@@ -11,3 +11,8 @@ ru:
         admin_panel: Админка
         log_out: Выйти
         log_in: Войти
+    admin_panel_menu:
+      'Ads on moderation': Объявления на модерации
+      'All ads': Все объявления
+      'All categories': Все категории
+      'Users': Пользователи

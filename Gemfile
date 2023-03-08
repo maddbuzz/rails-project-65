@@ -91,3 +91,5 @@ gem 'omniauth-rails_csrf_protection'
 gem 'rollbar'
 gem 'simple_form'
 gem 'slim-rails'
+
+gem 'pundit', '~> 2.3'

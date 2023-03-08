@@ -2,7 +2,13 @@ ru:
   activerecord:
     attributes:
       bulletin:
-        title: 'Заголовок'
-        description: 'Описание'
-        category: 'Категория'
-        image: 'Изображение'
+        title: Заголовок
+        description: Описание
+        category: Категория
+        image: Изображение
+      category:
+        name: Название
+      user:
+        name: Имя
+        email: Email
+        admin: обладает правами администратора

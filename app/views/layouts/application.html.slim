@@ -2,19 +2,17 @@ doctype html
 
 html.h-100[data-darkreader-mode="dynamic" data-darkreader-scheme="dark"]
 
-  = render 'layouts/shared/head'
+  == render 'layouts/shared/head'
 
   body.d-flex.flex-column.h-100
 
-    header
-      = render 'layouts/shared/nav'
+    == render 'layouts/shared/nav'
+
+    == render 'layouts/shared/flash'
 
     main
       .mt-4.mb-5.pb-5
         .container
-
-          = render 'layouts/shared/flash'
-
           .p-4.align-items-center.border.shadow.bg-white.rounded-3
             .row
               .p-3.p-lg-5.pt-lg-0
@@ -25,5 +23,5 @@ html.h-100[data-darkreader-mode="dynamic" data-darkreader-scheme="dark"]
       .container-xl
         .row.py-2
           .text-center
-            = 'created by '
+            'created by
             = link_to 'Hexlet student', 'https://ru.hexlet.io/u/andrey_a'
