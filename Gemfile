@@ -84,12 +84,12 @@ group :production do
   gem 'pg'
 end
 
+gem 'aasm'
 gem 'active_storage_validations'
 gem 'faker'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
+gem 'pundit', '~> 2.3'
 gem 'rollbar'
 gem 'simple_form'
 gem 'slim-rails'
-
-gem 'pundit', '~> 2.3'

@@ -26,6 +26,14 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user == record.owner
+    update?
+  end
+
+  def archive?
+    update?
+  end
+
+  def to_moderate?
+    update?
   end
 end

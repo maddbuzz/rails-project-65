@@ -1,0 +1,46 @@
+h1.h2.mb-4
+  = t('.ads_on_moderation')
+
+.row.mt-2
+  table.table.table-borderless
+    thead
+      tr
+        th
+          = t('.title')
+        th
+          = t('.publish_date')
+        th
+          = t('.actions')
+    tbody
+
+      == render partial: 'moderate_bulletin', collection: @bulletins
+
+  /nav
+    ul.pagination
+      li.page-item.active
+        a.page-link[href="/admin"]
+          | 1
+      li.page-item
+        a.page-link[rel="next" href="/admin?page=2"]
+          | 2
+      li.page-item
+        a.page-link[href="/admin?page=3"]
+          | 3
+      li.page-item
+        a.page-link[href="/admin?page=4"]
+          | 4
+      li.page-item
+        a.page-link[href="/admin?page=5"]
+          | 5
+      li.page-item.disabled
+        a.page-link[href="#" onclick="return false;"]
+          span.translation_missing[title="translation missing: ru.views.pagination.truncate"]
+            | Truncate
+      li.page-item
+        a.page-link[rel="next" href="/admin?page=2"]
+          span.translation_missing[title="translation missing: ru.views.pagination.next"]
+            | Next
+      li.page-item
+        a.page-link[href="/admin?page=147"]
+          span.translation_missing[title="translation missing: ru.views.pagination.last"]
+            | Last

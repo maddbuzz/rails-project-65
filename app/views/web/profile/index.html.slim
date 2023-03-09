@@ -1,0 +1,56 @@
+.mb-4
+  h2
+    = t('.my_bulletins')
+  hr
+
+= link_to t('.add_bulletin'), new_bulletin_path
+
+.row.mt-2
+  table.table.table-borderless
+    thead
+      tr
+        th
+          = t('.title')
+        th
+          = t('.state')
+        th
+          = t('.publish_date')
+        th
+          = t('.actions')
+    tbody
+
+      / == render @bulletins
+      == render partial: 'bulletin', collection: @bulletins
+
+/= link_to t('.add_bulletin'), new_bulletin_path
+
+/form#bulletin_search.bulletin_search[action="/profile" accept-charset="UTF-8" method="get"]
+  .row.my-2
+    .col-6
+      .form-group.mb-3.string.required.q_title_cont
+        input#q_title_cont.form-control.string.required[type="text" name="q[title_cont]"]
+        small.form-text.text-muted
+          | Искать по названию объявления
+    .col-3
+      .form-group.mb-3.select.required.q_state_eq
+        select#q_state_eq.form-control.select.required[name="q[state_eq]"]
+          option[value="" label=" "]
+          option[value="draft"]
+            | Черновик
+          option[value="under_moderation"]
+            | На модерации
+          option[value="rejected"]
+            | Возвращено
+          option[value="archived"]
+            | В архиве
+          option[value="published"]
+            | Опубликовано
+        small.form-text.text-muted
+          | По состоянию
+    .col-3
+      input.btn.btn-primary.me-2[type="submit" name="commit" value="Искать" data-disable-with="Искать"]
+      a.btn.btn-outline-primary[href="/profile"]
+        | Сброс
+
+/.row.mt-2
+  table.table.table-borderless

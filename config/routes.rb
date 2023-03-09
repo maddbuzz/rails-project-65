@@ -2,24 +2,30 @@
 
 Rails.application.routes.draw do
   scope module: :web do
-    root 'bulletins#index'
-    resources :bulletins
-
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
     delete 'auth/logout', to: 'auth#logout'
 
+    root 'bulletins#index'
+    resources :bulletins do
+      member do
+        patch :archive
+        patch :to_moderate
+      end
+    end
+
+    get 'profile', to: 'profile#index', as: :profile
+
     namespace :admin do
-      # get '/', to: 'dashboard#index', as: :dashboard
-      # resources :bulletins, only: :index do
-      #   member do
-      #     patch :archive
-      #     patch :publish
-      #     patch :reject
-      #   end
-      # end
-      get '/', to: 'bulletins#index'
+      get '/', to: 'bulletins#moderate_ads'
       get 'bulletins', to: 'bulletins#index', as: :bulletins
+      resources :bulletins, only: %i[] do
+        member do
+          patch :archive
+          patch :publish
+          patch :reject
+        end
+      end
       resources :categories, except: %i[show]
       resources :users, only: %i[index destroy edit update]
     end

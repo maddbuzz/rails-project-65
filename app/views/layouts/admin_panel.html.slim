@@ -14,7 +14,7 @@ html.h-100[data-darkreader-mode="dynamic" data-darkreader-scheme="dark"]
       .row
         .col-md-3
 
-          == render partial: 'layouts/admin_panel_menu', locals: { url: request.url }
+          == render partial: 'layouts/admin_panel_menu', locals: { request_url: request.url }
 
         .col-md-9
 

@@ -3,11 +3,11 @@
 module Web
   class BulletinsController < ApplicationController
     before_action :authenticate_user!, except: %i[index show]
-    before_action :set_bulletin, only: %i[show edit update destroy]
+    before_action :set_bulletin, only: %i[show edit update destroy archive to_moderate]
 
     def index
       authorize Bulletin
-      @bulletins = Bulletin.order(created_at: :desc)
+      @bulletins = Bulletin.published.order(updated_at: :desc)
     end
 
     def show; end
@@ -36,6 +36,7 @@ module Web
       respond_to do |format|
         if @bulletin.update(bulletin_params)
           format.html { redirect_to bulletin_url(@bulletin), notice: t('.success') }
+          # redirect_back fallback_location: bulletin_url(@bulletin)
         else
           format.html { render :edit, status: :unprocessable_entity }
         end
@@ -48,6 +49,20 @@ module Web
       respond_to do |format|
         format.html { redirect_to bulletins_url, status: :see_other, notice: t('.success') }
       end
+    end
+
+    def archive
+      return unless @bulletin.may_archive?
+
+      @bulletin.archive!
+      redirect_to profile_path, notice: t('.success')
+    end
+
+    def to_moderate
+      return unless @bulletin.may_to_moderate?
+
+      @bulletin.to_moderate!
+      redirect_to profile_path, notice: t('.success')
     end
 
     private

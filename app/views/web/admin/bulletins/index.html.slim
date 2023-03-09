@@ -1,0 +1,20 @@
+.mb-4
+  h2
+    = t('.all_bulletins')
+  hr
+
+.row.mt-2
+  table.table.table-borderless
+    thead
+      tr
+        th
+          = t('.title')
+        th
+          = t('.state')
+        th
+          = t('.publish_date')
+        th
+          = t('.actions')
+    tbody
+
+      == render partial: 'bulletin', collection: @bulletins

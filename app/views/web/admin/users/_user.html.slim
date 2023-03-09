@@ -4,7 +4,7 @@ tr
   td
     = user.email
   td
-    = user.admin?
+    input.form-check-input[type="checkbox" value="" disabled checked=user.admin?]
   td
     => link_to t('.edit'), edit_admin_user_path(user), class: 'me-1'
     / '|

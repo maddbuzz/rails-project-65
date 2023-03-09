@@ -1,15 +1,10 @@
 - common_classes = 'nav-link link-dark'
+- menu_items = [{ title: t('.Ads on moderation'), url: admin_url },
+                { title: t('.All ads'), url: admin_bulletins_url },
+                { title: t('.All categories'), url: admin_categories_url },
+                { title: t('.Users'), url: admin_users_url }]
 
 ul.nav.flex-column.nav-pills
-  li.nav-item
-    = link_to admin_path, class: "#{common_classes} #{'active' if admin_url == url}" do
-      = t('.Ads on moderation')
-  li.nav-item
-    = link_to admin_bulletins_path, class: "#{common_classes} #{'active' if admin_bulletins_url == url}" do
-      = t('.All ads')
-  li.nav-item
-    = link_to admin_categories_path, class: "#{common_classes} #{'active' if admin_categories_url == url}" do
-      = t('.All categories')
-  li.nav-item
-    = link_to admin_users_path, class: "#{common_classes} #{'active' if admin_users_url == url}" do
-      = t('.Users')
+  - menu_items.each do |item|
+    li.nav-item
+      = link_to item[:title], item[:url], class: "#{common_classes} #{'active' if item[:url] == request_url}"

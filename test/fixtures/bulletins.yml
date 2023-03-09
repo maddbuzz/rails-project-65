@@ -6,6 +6,7 @@ one:
   description: MyText1
   owner_id: 1
   category_id: 1
+  state: 'published'
 
 two:
   id: 2
@@ -13,3 +14,4 @@ two:
   description: MyText2
   owner_id: 2
   category_id: 2
+  state: 'under_moderation'

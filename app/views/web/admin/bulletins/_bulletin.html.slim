@@ -1,0 +1,11 @@
+tr
+  td
+    = link_to bulletin.title, bulletin_path(bulletin)
+  td
+    = t("bulletin_states.#{bulletin.state}")
+  td
+    = time_ago_in_words bulletin.updated_at
+  td
+    = link_to t('.show'), bulletin_path(bulletin), class: 'me-1'
+    - if bulletin.may_archive?
+      = link_to t('.archive'), archive_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_archive') }, class: 'text-danger'

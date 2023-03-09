@@ -1,0 +1,12 @@
+tr
+  td
+    = link_to moderate_bulletin.title, bulletin_path(moderate_bulletin)
+  td
+    = time_ago_in_words moderate_bulletin.updated_at
+  td
+    - if moderate_bulletin.may_publish?
+      = link_to t('.publish'), publish_admin_bulletin_path(moderate_bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_publish') }, class: 'me-1'
+    - if moderate_bulletin.may_reject?
+      = link_to t('.reject'), reject_admin_bulletin_path(moderate_bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_reject') }, class: 'me-1'
+    - if moderate_bulletin.may_archive?
+      = link_to t('.archive'), archive_admin_bulletin_path(moderate_bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_archive') }, class: 'text-danger'

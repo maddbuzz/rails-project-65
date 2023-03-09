@@ -3,13 +3,22 @@ ru:
   user_not_authorized: Вы не авторизованы для выполнения этого действия
   user_not_admin: Вам необходимо быть администратором для выполнения этого действия
 
+  bulletin_states:
+    draft: Черновик
+    under_moderation: На модерации
+    published: Опубликовано
+    rejected: Отклонено
+    archived: В архиве
+
   web:
+
     auth:
       callback:
         already_signed_in: Вы уже вошли ранее
         signed_in: Выполнен вход
       logout:
         signed_out: Выполнен выход
+
     bulletins:
       index:
         bulletins: Объявления
@@ -29,8 +38,58 @@ ru:
         success: Объявление обновлено
       destroy:
         success: Объявление удалено
-    
+      to_moderate:
+        success: Объявление отправлено на модерацию
+      archive:
+        success: Объявление отправлено в архив
+
+    profile:
+      index:
+        my_bulletins: Мои объявления
+        add_bulletin: Добавить объявление
+        title: Название
+        state: Состояние
+        publish_date: Дата обновления
+        actions: Действия
+      bulletin:
+        show: Показать
+        edit: Редактировать
+        to_moderate: На модерацию
+        archive: В архив
+        confirm_archive: Подтвердите архивацию
+
     admin:
+
+      bulletins:
+        publish:
+          success: Объявление опубликовано
+        reject: 
+          success: Объявление отклонено
+        archive: 
+          success: Объявление отправлено в архив
+        bulletin:
+          show: Показать
+          archive: В архив
+          confirm_archive: Подтвердите архивацию
+        moderate_bulletin:  
+          archive: В архив
+          confirm_archive: Подтвердите архивацию
+          publish: Опубликовать
+          confirm_publish: Подтвердите публикацию
+          reject: Отклонить
+          confirm_reject: Подтвердите отклонение
+        moderate_ads:
+          ads_on_moderation: Объявления на модерации
+          title: Название
+          publish_date: Дата обновления
+          actions: Действия
+        index:
+          all_bulletins: Все объявления
+          title: Название
+          state: Состояние
+          publish_date: Дата обновления
+          actions: Действия
+
       users:
         index:
           title: Пользователи
@@ -49,6 +108,7 @@ ru:
           submit: Сохранить изменения
         update:
           success: Изменения сохранены
+
       categories:
         index:
           title: Категории

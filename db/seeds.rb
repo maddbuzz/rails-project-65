@@ -15,8 +15,8 @@ ActiveRecord::Base.transaction do
       title: Faker::Food.dish,
       description: Faker::Food.description.slice(..999),
       category: c.sample,
-      owner: u
-      # state: %i[published under_moderation].sample
+      owner: u,
+      state: %i[published under_moderation].sample
     )
 
     filename = "#{image_names.sample}.jpg"
