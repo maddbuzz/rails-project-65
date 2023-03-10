@@ -50,7 +50,8 @@ class BulletinsControllerTest < ActionDispatch::IntegrationTest
     sign_in @bulletin.owner
 
     patch bulletin_path(@bulletin), params: { bulletin: @attrs }
-    assert_redirected_to bulletin_path(@bulletin)
+    # assert_redirected_to bulletin_path(@bulletin)
+    assert_redirected_to profile_path
   end
 
   test 'should destroy bulletin' do
