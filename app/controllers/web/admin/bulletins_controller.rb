@@ -11,7 +11,7 @@ module Web
 
       def index
         @q = Bulletin.ransack(params[:q])
-        @bulletins = @q.result.order(updated_at: :desc)
+        @bulletins = @q.result.order(updated_at: :desc).page params[:page]
       end
 
       def archive

@@ -3,6 +3,13 @@ ru:
   user_not_authorized: Вы не авторизованы для выполнения этого действия
   user_not_admin: Вам необходимо быть администратором для выполнения этого действия
 
+  views:
+    pagination:
+      first: Первая
+      previous: Предыдущая
+      next: Следующая
+      last: Последняя
+
   bulletin_states:
     draft: Черновик
     under_moderation: На модерации

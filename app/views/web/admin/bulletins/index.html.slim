@@ -19,3 +19,5 @@
     tbody
 
       == render partial: 'bulletin', collection: @bulletins
+
+== paginate @bulletins, remote: true
