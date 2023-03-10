@@ -87,6 +87,7 @@ end
 gem 'aasm'
 gem 'active_storage_validations'
 gem 'faker'
+gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'pundit', '~> 2.3'

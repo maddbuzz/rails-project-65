@@ -1,8 +1,10 @@
 tr
-  td
+  /td
     = category.id
   td
     = category.name
+  td
+    = category.bulletins.count
   td
     => link_to t('.edit'), edit_admin_category_path(category), class: 'me-1'
     / '|

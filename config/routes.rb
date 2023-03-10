@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     delete 'auth/logout', to: 'auth#logout'
 
     root 'bulletins#index'
-    resources :bulletins do
+    resources :bulletins, except: %i[index] do
       member do
         patch :archive
         patch :to_moderate

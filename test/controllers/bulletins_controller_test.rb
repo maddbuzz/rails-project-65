@@ -14,7 +14,8 @@ class BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get bulletins_path
+    # get bulletins_path
+    get root_path
     assert_response :success
   end
 

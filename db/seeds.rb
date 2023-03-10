@@ -3,19 +3,21 @@
 ActiveRecord::Base.transaction do
   image_names = %w[food_0 food_1 food_2 food_3 food_4]
 
-  u = User.create!(email: Faker::Internet.email, name: Faker::Name.name)
+  User.create!(email: Faker::Internet.email, name: Faker::Name.name)
+  users = User.all
 
   4.times do
-    Category.create!(name: Faker::Food.unique.ethnic_category)
+    # Category.create!(name: Faker::Food.unique.ethnic_category)
+    Category.create!(name: Faker::Lorem.unique.sentence)
   end
-  c = Category.all
+  categories = Category.all
 
-  16.times do
+  100.times do
     b = Bulletin.new(
       title: Faker::Food.dish,
       description: Faker::Food.description.slice(..999),
-      category: c.sample,
-      owner: u,
+      category: categories.sample,
+      owner: users.sample,
       state: %i[published under_moderation].sample
     )
 
