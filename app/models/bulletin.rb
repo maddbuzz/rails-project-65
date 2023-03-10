@@ -34,4 +34,8 @@ class Bulletin < ApplicationRecord
   validates :image, attached: true,
                     content_type: %i[png jpg jpeg],
                     size: { less_than: 5.megabytes }
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[category_id title state]
+  end
 end

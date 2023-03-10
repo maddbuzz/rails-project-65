@@ -10,28 +10,29 @@ module Web
       end
 
       def index
-        @bulletins = Bulletin.order(updated_at: :desc)
+        @q = Bulletin.ransack(params[:q])
+        @bulletins = @q.result.order(updated_at: :desc)
       end
 
       def archive
         return unless @bulletin.may_archive?
 
         @bulletin.archive!
-        redirect_to profile_path, notice: t('.success')
+        redirect_to admin_path, notice: t('.success')
       end
 
       def publish
         return unless @bulletin.may_publish?
 
         @bulletin.publish!
-        redirect_to profile_path, notice: t('.success')
+        redirect_to admin_path, notice: t('.success')
       end
 
       def reject
         return unless @bulletin.may_reject?
 
         @bulletin.reject!
-        redirect_to profile_path, notice: t('.success')
+        redirect_to admin_path, notice: t('.success')
       end
 
       private

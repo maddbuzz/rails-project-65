@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: dbffa8bed3e4cad9d7f51cd9233466ae4b68fb4d
+  branch: main
+  specs:
+    ransack (4.0.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -326,6 +336,7 @@ DEPENDENCIES
   puma (~> 5.0)
   pundit (~> 2.3)
   rails (~> 7.0.4, >= 7.0.4.2)
+  ransack!
   rollbar
   rubocop-rails
   selenium-webdriver

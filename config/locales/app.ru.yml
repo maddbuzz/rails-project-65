@@ -42,6 +42,11 @@ ru:
         success: Объявление отправлено на модерацию
       archive:
         success: Объявление отправлено в архив
+      search_form:
+        search_by_title: Искать по названию объявления
+        select_category: Выбрать категорию
+        search: Искать
+        reset: Сброс
 
     profile:
       index:
@@ -57,6 +62,11 @@ ru:
         to_moderate: На модерацию
         archive: В архив
         confirm_archive: Подтвердите архивацию
+      search_form:
+        search_by_title: Искать по названию объявления
+        select_by_state: Выбрать по состоянию
+        search: Искать
+        reset: Сброс
 
     admin:
 

@@ -1,0 +1,12 @@
+- states = Bulletin.aasm.states.map(&:name)
+- named_options = states.map { |state| [t("bulletin_states.#{state}"), state] }
+
+= search_form_for @q, url: do |f|
+  .row.my-2
+    .col-6
+      = f.input :title_cont, label: false, hint: t('.search_by_title'), hint_html: { class: 'text-muted' }
+    .col-3
+      = f.input :state_eq, as: :select, collection: named_options, label: false, hint: t('.select_by_state'), hint_html: { class: 'text-muted' }
+    .col-3
+      = f.submit t('.search'), class: 'btn btn-primary me-2 mb-2'
+      = link_to t('.reset'), url, class: 'btn btn-outline-primary mb-2'

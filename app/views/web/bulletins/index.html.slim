@@ -3,7 +3,8 @@
     = t('.bulletins')
   hr
 
+== render partial: 'search_form'
+
 .row.mt-2
 
-  /== render @bulletins
   == render partial: 'bulletin', collection: @bulletins

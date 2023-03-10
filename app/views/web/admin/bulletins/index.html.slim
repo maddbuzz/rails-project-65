@@ -3,6 +3,8 @@
     = t('.all_bulletins')
   hr
 
+== render partial: 'web/profile/search_form', locals: { url: admin_bulletins_url }
+
 .row.mt-2
   table.table.table-borderless
     thead
