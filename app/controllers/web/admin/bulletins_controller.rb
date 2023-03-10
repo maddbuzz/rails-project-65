@@ -5,7 +5,7 @@ module Web
     class BulletinsController < Web::Admin::ApplicationController
       before_action :set_bulletin, only: %i[archive publish reject]
 
-      def moderate_ads
+      def index_under_moderation
         @bulletins = Bulletin.under_moderation.order(updated_at: :desc)
       end
 
@@ -18,7 +18,8 @@ module Web
         return unless @bulletin.may_archive?
 
         @bulletin.archive!
-        redirect_to admin_path, notice: t('.success')
+        # redirect_to admin_path, notice: t('.success')
+        redirect_back fallback_location: admin_path, notice: t('.success')
       end
 
       def publish

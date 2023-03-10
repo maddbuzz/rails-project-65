@@ -37,7 +37,8 @@ module Web
     def update
       respond_to do |format|
         if @bulletin.update(bulletin_params)
-          format.html { redirect_to bulletin_url(@bulletin), notice: t('.success') }
+          # format.html { redirect_to bulletin_url(@bulletin), notice: t('.success') }
+          format.html { redirect_to profile_path, notice: t('.success') }
           # redirect_back fallback_location: bulletin_url(@bulletin)
         else
           format.html { render :edit, status: :unprocessable_entity }

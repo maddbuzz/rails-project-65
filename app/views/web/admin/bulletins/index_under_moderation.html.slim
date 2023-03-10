@@ -13,7 +13,7 @@ h1.h2.mb-4
           = t('.actions')
     tbody
 
-      == render partial: 'moderate_bulletin', collection: @bulletins, as: :bulletin
+      == render(partial: 'bulletin_under_moderation', collection: @bulletins, as: :bulletin)
 
   /nav
     ul.pagination

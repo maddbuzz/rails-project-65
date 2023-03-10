@@ -81,14 +81,14 @@ ru:
           show: Показать
           archive: В архив
           confirm_archive: Подтвердите архивацию
-        moderate_bulletin:  
+        bulletin_under_moderation:  
           archive: В архив
           confirm_archive: Подтвердите архивацию
           publish: Опубликовать
           confirm_publish: Подтвердите публикацию
           reject: Отклонить
           confirm_reject: Подтвердите отклонение
-        moderate_ads:
+        index_under_moderation:
           ads_on_moderation: Объявления на модерации
           title: Название
           publish_date: Дата обновления

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get 'profile', to: 'profile#index', as: :profile
 
     namespace :admin do
-      get '/', to: 'bulletins#moderate_ads'
+      get '/', to: 'bulletins#index_under_moderation'
       get 'bulletins', to: 'bulletins#index', as: :bulletins
       resources :bulletins, only: %i[] do
         member do
