@@ -4,7 +4,7 @@
 
 # Bulletin board
 
-Bulletin board is a service similar to Avito where users can post and reply to ads and contact the seller. Each ad is pre-moderated by the service administrators. Administrators can return an ad for revision, publish it, or archive it.
+Bulletin board is a service where you can post ads and search for existing ones. Each ad is pre-moderated by the service administrators. Administrators can return an ad for revision, publish it, or archive it.
 
 (production deployed on [railway](https://maddbuzz-rails-bulletin-board.up.railway.app/))
 
