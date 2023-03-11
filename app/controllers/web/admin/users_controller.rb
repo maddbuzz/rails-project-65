@@ -6,7 +6,8 @@ module Web
       before_action :set_user, only: %i[edit update destroy]
 
       def index
-        @users = User.all.page params[:page]
+        # @users = User.all.page params[:page]
+        @users = User.page(params[:page])
         @user_bulletins_counts = Bulletin.group(:user).count
       end
 
