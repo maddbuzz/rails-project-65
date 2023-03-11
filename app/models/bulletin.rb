@@ -25,9 +25,12 @@ class Bulletin < ApplicationRecord
   end
 
   belongs_to :category
-  belongs_to :owner, class_name: 'User', inverse_of: :bulletins
+  belongs_to :user, class_name: 'User', inverse_of: :bulletins
 
-  has_one_attached :image
+  has_one_attached :image do |attachable|
+    attachable.variant :for_form, resize_to_limit: [nil, 100]
+    attachable.variant :for_show, resize_to_limit: [400, 300]
+  end
 
   validates :title, presence: true, length: { minimum: 3, maximum: 50 }
   validates :description, presence: true, length: { maximum: 1000 }

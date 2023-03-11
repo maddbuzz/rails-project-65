@@ -17,7 +17,7 @@ ActiveRecord::Base.transaction do
       title: Faker::Food.dish,
       description: Faker::Food.description.slice(..999),
       category: categories.sample,
-      owner: users.sample,
+      user: users.sample,
       state: %i[published under_moderation].sample
     )
 

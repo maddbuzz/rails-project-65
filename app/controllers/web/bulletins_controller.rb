@@ -21,7 +21,19 @@ module Web
 
     def edit; end
 
+    def resize_uploaded_image
+      # return if Rails.env.test?
+      return unless bulletin_params[:image]
+
+      path = bulletin_params[:image].tempfile.path
+      ImageProcessing::MiniMagick.source(path)
+                                 .resize_to_limit(1200, 1200)
+                                 .call(destination: path)
+    end
+
     def create
+      resize_uploaded_image
+
       @bulletin = current_user.bulletins.new(bulletin_params)
       authorize @bulletin
 
@@ -35,6 +47,8 @@ module Web
     end
 
     def update
+      resize_uploaded_image
+
       respond_to do |format|
         if @bulletin.update(bulletin_params)
           # format.html { redirect_to bulletin_url(@bulletin), notice: t('.success') }

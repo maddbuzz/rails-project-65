@@ -1,5 +1,3 @@
-require: rubocop-rails
-
 AllCops:
   Exclude:
     - "db/**"
@@ -10,6 +8,12 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.1.2
   SuggestExtensions: false
+
+require:
+  - rubocop-rails
+
+Rails:
+  Enabled: true
 
 Layout/LineLength:
   Enabled: false

@@ -18,7 +18,7 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.owner
+    user == record.user
   end
 
   def edit?

@@ -4,7 +4,7 @@ one:
   id: 1
   title: MyString1
   description: MyText1
-  owner_id: 1
+  user_id: 1
   category_id: 1
   state: 'published'
 
@@ -12,6 +12,6 @@ two:
   id: 2
   title: MyString2
   description: MyText2
-  owner_id: 2
+  user_id: 2
   category_id: 2
   state: 'under_moderation'

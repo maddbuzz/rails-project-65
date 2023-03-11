@@ -41,14 +41,14 @@ class BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get edit' do
-    sign_in @bulletin.owner
+    sign_in @bulletin.user
 
     get edit_bulletin_path(@bulletin)
     assert_response :success
   end
 
   test 'should update bulletin' do
-    sign_in @bulletin.owner
+    sign_in @bulletin.user
 
     patch bulletin_path(@bulletin), params: { bulletin: @attrs }
     # assert_redirected_to bulletin_path(@bulletin)
@@ -56,7 +56,7 @@ class BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # test 'should destroy bulletin' do
-  #   sign_in @bulletin.owner
+  #   sign_in @bulletin.user
 
   #   assert_difference('Bulletin.count', -1) do
   #     delete bulletin_path(@bulletin)
