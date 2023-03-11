@@ -12,7 +12,7 @@ ru:
         log_out: Выйти
         log_in: Войти
     admin_panel_menu:
-      'Ads on moderation': Объявления на модерации
-      'All ads': Все объявления
-      'Categories': Категории
-      'Users': Пользователи
+      ads_on_moderation: Объявления на модерации
+      all_ads: Все объявления
+      categories: Категории
+      users: Пользователи

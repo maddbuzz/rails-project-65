@@ -6,7 +6,7 @@ module Web
       authenticate_user!
 
       @q = Bulletin.where(owner_id: current_user.id).ransack(params[:q])
-      @bulletins = @q.result.order(updated_at: :desc)
+      @bulletins = @q.result.order(updated_at: :desc).page params[:page]
     end
   end
 end

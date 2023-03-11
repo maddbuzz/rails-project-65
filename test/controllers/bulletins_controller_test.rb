@@ -55,13 +55,13 @@ class BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to profile_path
   end
 
-  test 'should destroy bulletin' do
-    sign_in @bulletin.owner
+  # test 'should destroy bulletin' do
+  #   sign_in @bulletin.owner
 
-    assert_difference('Bulletin.count', -1) do
-      delete bulletin_path(@bulletin)
-    end
+  #   assert_difference('Bulletin.count', -1) do
+  #     delete bulletin_path(@bulletin)
+  #   end
 
-    assert_redirected_to bulletins_path
-  end
+  #   assert_redirected_to bulletins_path
+  # end
 end

@@ -6,7 +6,7 @@ module Web
       before_action :set_bulletin, only: %i[archive publish reject]
 
       def index_under_moderation
-        @bulletins = Bulletin.under_moderation.order(updated_at: :desc)
+        @bulletins = Bulletin.under_moderation.order(updated_at: :desc).page params[:page]
       end
 
       def index

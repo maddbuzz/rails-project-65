@@ -15,3 +15,5 @@ h1.h2.mb-4
           = t('.actions')
     tbody
       == render @categories
+
+== paginate @categories, remote: true

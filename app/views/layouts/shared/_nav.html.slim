@@ -13,9 +13,9 @@
               = link_to t('.new_bulletin'), new_bulletin_path, class: 'nav-link text-dark'
     ul.nav.nav-pills
       - if signed_in?
-        - if @current_user.admin?
-          li.nav-item.me-2
-            = link_to t('.admin_panel'), admin_path, class: 'nav-link text-danger'
+        / - if @current_user.admin?
+        li.nav-item.me-2
+          = link_to t('.admin_panel'), admin_path, class: "nav-link #{@current_user.admin? ? 'text-dark' : 'text-muted'}"
         li.nav-item.me-2
           = button_to t('.log_out'), auth_logout_path, method: :delete, class: 'nav-link text-dark'
       - else

@@ -3,8 +3,12 @@
     = t('.bulletins')
   hr
 
-== render partial: 'search_form'
+== render partial: 'search_form', locals: { url: root_url }
 
 .row.mt-2
 
   == render partial: 'bulletin', collection: @bulletins
+
+.row.mt-2
+
+  == paginate @bulletins, remote: true
