@@ -4,7 +4,8 @@ tr
   td
     = category.name
   td
-    = category.bulletins.count
+    / = category.bulletins.count
+    = @category_bulletins_counts[category]
   td
     => link_to t('.edit'), edit_admin_category_path(category), class: 'me-1'
     / '|

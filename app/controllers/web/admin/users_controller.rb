@@ -7,6 +7,7 @@ module Web
 
       def index
         @users = User.all.page params[:page]
+        @user_bulletins_counts = Bulletin.group(:user).count
       end
 
       # def new

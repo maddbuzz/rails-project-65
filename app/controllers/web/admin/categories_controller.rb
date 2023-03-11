@@ -7,6 +7,7 @@ module Web
 
       def index
         @categories = Category.all.page params[:page]
+        @category_bulletins_counts = Bulletin.group(:category).count
       end
 
       def new
