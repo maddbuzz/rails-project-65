@@ -3,7 +3,11 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'new user not admin' do
+    user = User.new
+    assert_not user.admin?
+
+    user.admin = true
+    assert user.admin?
+  end
 end

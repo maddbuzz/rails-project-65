@@ -4,6 +4,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
+# require 'aasm/minitest'
+
 # Теперь OmniAuth в тестах не обращается к внешним источникам
 OmniAuth.config.test_mode = true
 
@@ -41,9 +43,9 @@ module ActionDispatch
     def current_user
       @current_user ||= User.find_by(id: session[:user_id])
     end
-
-    def authenticate_user!
-      signed_in?
-    end
   end
+end
+
+def assert_flash(i18n_path, type = :notice)
+  assert_equal I18n.t("#{@test_i18n_path}.#{i18n_path}"), flash[type]
 end
