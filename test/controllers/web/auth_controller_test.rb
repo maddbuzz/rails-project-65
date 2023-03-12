@@ -28,7 +28,6 @@ module Web
       assert_flash 'callback.signed_in'
 
       user = User.find_by!(email: auth_hash[:info][:email].downcase)
-
       assert user
       assert signed_in?
 

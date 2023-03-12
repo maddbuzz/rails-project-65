@@ -90,6 +90,7 @@ module Web
       assert_redirected_to profile_url
       assert_flash 'to_moderate.success'
       # assert { bulletin.under_moderation? }
+      # assert { Bulletin.find_by(id: bulletin.id).under_moderation? }
     end
   end
 end
