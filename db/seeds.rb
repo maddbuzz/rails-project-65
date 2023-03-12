@@ -6,16 +6,15 @@ ActiveRecord::Base.transaction do
   User.create!(email: Faker::Internet.email, name: Faker::Name.name)
   users = User.all
 
-  4.times do
-    # Category.create!(name: Faker::Food.unique.ethnic_category)
+  8.times do
     Category.create!(name: Faker::Lorem.unique.sentence)
   end
   categories = Category.all
 
-  100.times do
+  200.times do
     b = Bulletin.new(
-      title: Faker::Food.dish,
-      description: Faker::Food.description.slice(..999),
+      title: Faker::Lorem.unique.sentence,
+      description: Faker::Lorem.unique.paragraph.slice(..999),
       category: categories.sample,
       user: users.sample,
       state: %i[published under_moderation].sample
