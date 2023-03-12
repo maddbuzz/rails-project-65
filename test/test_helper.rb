@@ -4,11 +4,6 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
-# require 'aasm/minitest'
-
-# Теперь OmniAuth в тестах не обращается к внешним источникам
-OmniAuth.config.test_mode = true
-
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
@@ -21,6 +16,9 @@ end
 
 module ActionDispatch
   class IntegrationTest
+    # Теперь OmniAuth в тестах не обращается к внешним источникам
+    OmniAuth.config.test_mode = true
+
     def sign_in(user, _options = {})
       auth_hash = {
         provider: 'github',
@@ -46,6 +44,10 @@ module ActionDispatch
   end
 end
 
+def t(*args, **kwargs)
+  I18n.t(*args, **kwargs)
+end
+
 def assert_flash(i18n_path, type = :notice, common_i18n_path = @test_i18n_path)
-  assert_equal I18n.t("#{common_i18n_path}.#{i18n_path}"), flash[type]
+  assert_equal t("#{common_i18n_path}.#{i18n_path}"), flash[type]
 end
