@@ -11,7 +11,7 @@ module Web
       assert_response :redirect
     end
 
-    test 'create' do
+    test 'create, callback and logout' do
       auth_hash = {
         provider: 'github',
         uid: '12345',

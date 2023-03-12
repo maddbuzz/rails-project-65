@@ -46,6 +46,6 @@ module ActionDispatch
   end
 end
 
-def assert_flash(i18n_path, type = :notice)
-  assert_equal I18n.t("#{@test_i18n_path}.#{i18n_path}"), flash[type]
+def assert_flash(i18n_path, type = :notice, common_i18n_path = @test_i18n_path)
+  assert_equal I18n.t("#{common_i18n_path}.#{i18n_path}"), flash[type]
 end
