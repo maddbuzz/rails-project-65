@@ -43,10 +43,14 @@ module Web
         assert_flash 'update.success'
       end
 
-      test 'admin should destroy' do
+      test 'admin should destroy user with all dependent bulletins' do
         sign_in @user_admin
-        assert_difference('User.count', -1) do
-          delete admin_user_path(@user)
+        user_bulletins_count = @user.bulletins.count
+        assert_not user_bulletins_count.zero?
+        assert_difference('Bulletin.count', -user_bulletins_count) do
+          assert_difference('User.count', -1) do
+            delete admin_user_path(@user)
+          end
         end
         assert_redirected_to admin_users_url
         assert_flash 'destroy.success'

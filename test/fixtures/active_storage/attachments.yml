@@ -1,0 +1,9 @@
+first_image_attachment:
+  name: image
+  record: draft (Bulletin)
+  blob: first_image_blob
+
+second_image_attachment:
+  name: image
+  record: under_moderation (Bulletin)
+  blob: second_image_blob

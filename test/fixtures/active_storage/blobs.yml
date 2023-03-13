@@ -1,0 +1,2 @@
+first_image_blob: <%= ActiveStorage::FixtureSet.blob filename: 'food_1.jpg' %>
+second_image_blob: <%= ActiveStorage::FixtureSet.blob filename: 'food_2.jpg' %>

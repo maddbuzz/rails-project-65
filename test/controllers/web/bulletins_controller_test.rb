@@ -6,12 +6,17 @@ module Web
   class BulletinsControllerTest < ActionDispatch::IntegrationTest
     setup do
       @test_i18n_path = 'web.bulletins'
-      @bulletin = bulletins(:published)
+
+      @bulletin = bulletins(:draft)
+      # @bulletin.image.attach fixture_file_upload('food_3.jpg')
+      # @bulletin.save!
+
       @attrs = {
         title: Faker::Lorem.sentence,
         description: Faker::Lorem.paragraph,
         image: fixture_file_upload('food_4.jpg'),
-        category_id: categories(:one).id
+        category_id: categories(:one).id,
+        user_id: users(:one).id
       }
     end
 
@@ -68,29 +73,23 @@ module Web
     # end
 
     test 'should archive bulletin' do
-      bulletin = bulletins(:published)
-      sign_in bulletin.user
-      assert { signed_in? }
-      assert { bulletin.published? }
-      assert { bulletin.may_archive? }
-      patch archive_bulletin_url(bulletin)
-      # bulletin.reload
+      sign_in @bulletin.user
+      assert { @bulletin.may_archive? }
+      patch archive_bulletin_url(@bulletin)
+      @bulletin.reload
+      assert { @bulletin.archived? }
       assert_redirected_to profile_path
       assert_flash 'archive.success'
-      # assert { bulletin.archived? }
     end
 
     test 'should to_moderate bulletin' do
-      bulletin = bulletins(:draft)
-      sign_in bulletin.user
-      assert { signed_in? }
-      assert { bulletin.draft? }
-      assert { bulletin.may_to_moderate? }
-      patch to_moderate_bulletin_path(bulletin)
+      sign_in @bulletin.user
+      assert { @bulletin.may_to_moderate? }
+      patch to_moderate_bulletin_path(@bulletin)
+      @bulletin.reload
+      assert { @bulletin.under_moderation? }
       assert_redirected_to profile_url
       assert_flash 'to_moderate.success'
-      # assert { bulletin.under_moderation? }
-      # assert { Bulletin.find_by(id: bulletin.id).under_moderation? }
     end
   end
 end

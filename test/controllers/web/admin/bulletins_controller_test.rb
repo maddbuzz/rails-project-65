@@ -7,7 +7,12 @@ module Web
     class BulletinsControllerTest < ActionDispatch::IntegrationTest
       setup do
         @test_i18n_path = 'web.admin.bulletins'
+
         @user_admin = users(:admin)
+
+        @bulletin = bulletins(:under_moderation)
+        # @bulletin.image.attach fixture_file_upload('food_4.jpg')
+        # @bulletin.save!
       end
 
       test 'only admin should get index' do
@@ -36,36 +41,33 @@ module Web
       end
 
       test 'should archive bulletin' do
-        bulletin = bulletins(:under_moderation)
         sign_in @user_admin
-        assert { bulletin.under_moderation? }
-        assert { bulletin.may_archive? }
-        patch archive_admin_bulletin_url(bulletin)
+        assert { @bulletin.may_archive? }
+        patch archive_admin_bulletin_url(@bulletin)
+        @bulletin.reload
+        assert { @bulletin.archived? }
         assert_response :redirect
         assert_flash 'archive.success'
-        # assert { bulletin.archived? }
       end
 
       test 'should publish bulletin' do
-        bulletin = bulletins(:under_moderation)
         sign_in @user_admin
-        assert { bulletin.under_moderation? }
-        assert { bulletin.may_publish? }
-        patch publish_admin_bulletin_path(bulletin)
+        assert { @bulletin.may_publish? }
+        patch publish_admin_bulletin_path(@bulletin)
+        @bulletin.reload
+        assert { @bulletin.published? }
         assert_redirected_to admin_path
         assert_flash 'publish.success'
-        # assert { bulletin.published? }
       end
 
       test 'should reject bulletin' do
-        bulletin = bulletins(:under_moderation)
         sign_in @user_admin
-        assert { bulletin.under_moderation? }
-        assert { bulletin.may_reject? }
-        patch reject_admin_bulletin_path(bulletin)
+        assert { @bulletin.may_reject? }
+        patch reject_admin_bulletin_path(@bulletin)
+        @bulletin.reload
+        assert { @bulletin.rejected? }
         assert_redirected_to admin_path
         assert_flash 'reject.success'
-        # assert { bulletin.rejected? }
       end
     end
   end
