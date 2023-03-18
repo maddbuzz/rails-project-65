@@ -34,6 +34,9 @@ test-system:
 	bin/rails db:environment:set RAILS_ENV=test
 	NODE_ENV=test bin/rails test:system
 
+test-system-headless:
+	MOZ_HEADLESS=1 make test-system
+
 slim-lint:
 	slim-lint app/**/*.slim || true
 
