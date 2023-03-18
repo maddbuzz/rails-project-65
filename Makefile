@@ -1,5 +1,5 @@
 install:
-	sudo apt install firefox
+	sudo apt install -y firefox
 	sudo apt install -y imagemagick libvips
 	gem install slim_lint
 	bin/setup
