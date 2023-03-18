@@ -21,10 +21,11 @@ make dev-start
 make test
 ```
 ## Start system tests
-You need to install Firefox first
+You need Firefox first
 ```
 sudo apt install firefox
 ```
+then
 ```
 make test-system
 ```
