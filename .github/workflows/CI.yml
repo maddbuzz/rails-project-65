@@ -33,4 +33,4 @@ jobs:
       run: make test
 
     - name: Run system tests in headless mode
-      run: make test-system-headless
+      run: make test-system
