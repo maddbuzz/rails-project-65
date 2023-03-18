@@ -30,6 +30,7 @@ test:
 test-system:
 	clear || true
 	rm -rf tmp/screenshots/ || true
+	firefox -v
 	bin/rails db:environment:set RAILS_ENV=test
 	NODE_ENV=test bin/rails test:system
 
