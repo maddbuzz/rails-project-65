@@ -7,6 +7,6 @@ tr
     - if bulletin.may_publish?
       = link_to t('.publish'), publish_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_publish') }, class: 'me-1'
     - if bulletin.may_reject?
-      = link_to t('.reject'), reject_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_reject') }, class: 'me-1'
+      =< link_to t('.reject'), reject_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_reject') }, class: 'me-1'
     - if bulletin.may_archive?
-      = link_to t('.archive'), archive_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_archive') }, class: 'text-danger'
+      =< link_to t('.archive'), archive_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confirm_archive') }, class: 'text-danger'

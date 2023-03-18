@@ -11,6 +11,9 @@ ru:
         admin_panel: Админка
         log_out: Выйти
         log_in: Войти
+      footer:
+        created_by: Проект
+        hexlet_student: 'студента "Хекслета"'
     admin_panel_menu:
       ads_on_moderation: Объявления на модерации
       all_ads: Все объявления

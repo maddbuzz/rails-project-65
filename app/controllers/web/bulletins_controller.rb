@@ -2,7 +2,7 @@
 
 module Web
   class BulletinsController < ApplicationController
-    before_action :authenticate_user!, except: %i[index show]
+    before_action :authenticate_user!, only: %i[new edit create update destroy archive to_moderate]
     before_action :set_bulletin, only: %i[show edit update destroy archive to_moderate]
 
     def index
@@ -20,16 +20,6 @@ module Web
     end
 
     def edit; end
-
-    def resize_uploaded_image
-      # return if Rails.env.test?
-      return unless bulletin_params[:image]
-
-      path = bulletin_params[:image].tempfile.path
-      ImageProcessing::MiniMagick.source(path)
-                                 .resize_to_limit(1200, 1200)
-                                 .call(destination: path)
-    end
 
     def create
       resize_uploaded_image
@@ -51,7 +41,6 @@ module Web
 
       respond_to do |format|
         if @bulletin.update(bulletin_params)
-          # format.html { redirect_to bulletin_url(@bulletin), notice: t('.success') }
           format.html { redirect_to profile_path, notice: t('.success') }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -90,6 +79,15 @@ module Web
 
     def bulletin_params
       params.require(:bulletin).permit(:title, :description, :image, :category_id)
+    end
+
+    def resize_uploaded_image
+      return unless bulletin_params[:image]
+
+      path = bulletin_params[:image].tempfile.path
+      ImageProcessing::MiniMagick.source(path)
+                                 .resize_to_limit(1200, 1200)
+                                 .call(destination: path)
     end
   end
 end

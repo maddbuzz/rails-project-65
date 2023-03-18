@@ -38,7 +38,7 @@ class Bulletin < ApplicationRecord
                     content_type: %i[png jpg jpeg],
                     size: { less_than: 5.megabytes }
 
-  scope :owner, ->(user) { where(user_id: user.id) }
+  scope :by_owner, ->(user) { where(user_id: user.id) }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[category_id title state]

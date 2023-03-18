@@ -5,7 +5,7 @@ module Web
     def index
       authenticate_user!
 
-      @q = Bulletin.owner(current_user).ransack(params[:q])
+      @q = Bulletin.by_owner(current_user).ransack(params[:q])
       @bulletins = @q.result.order(updated_at: :desc).page params[:page]
     end
   end

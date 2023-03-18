@@ -77,6 +77,20 @@ ru:
 
     admin:
 
+      home:
+        bulletin:
+          archive: В архив
+          confirm_archive: Подтвердите архивацию
+          publish: Опубликовать
+          confirm_publish: Подтвердите публикацию
+          reject: Отклонить
+          confirm_reject: Подтвердите отклонение
+        index:
+          ads_on_moderation: Объявления на модерации
+          title: Название
+          publish_date: Дата обновления
+          actions: Действия
+
       bulletins:
         publish:
           success: Объявление опубликовано
@@ -88,18 +102,6 @@ ru:
           show: Показать
           archive: В архив
           confirm_archive: Подтвердите архивацию
-        bulletin_under_moderation:  
-          archive: В архив
-          confirm_archive: Подтвердите архивацию
-          publish: Опубликовать
-          confirm_publish: Подтвердите публикацию
-          reject: Отклонить
-          confirm_reject: Подтвердите отклонение
-        index_under_moderation:
-          ads_on_moderation: Объявления на модерации
-          title: Название
-          publish_date: Дата обновления
-          actions: Действия
         index:
           all_bulletins: Все объявления
           title: Название

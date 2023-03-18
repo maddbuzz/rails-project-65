@@ -11,8 +11,6 @@ module Web
         @user_admin = users(:admin)
 
         @bulletin = bulletins(:under_moderation)
-        # @bulletin.image.attach fixture_file_upload('food_4.jpg')
-        # @bulletin.save!
       end
 
       test 'only admin should get index' do
@@ -31,12 +29,6 @@ module Web
       test 'admin should get index' do
         sign_in @user_admin
         get admin_bulletins_path
-        assert_response :success
-      end
-
-      test 'admin should get index_under_moderation' do
-        sign_in @user_admin
-        get admin_path
         assert_response :success
       end
 

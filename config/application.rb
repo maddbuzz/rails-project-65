@@ -23,6 +23,9 @@ module RailsProject65
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # This
     config.exceptions_app = routes
+    # essentially bypasses the internal error logic and
+    # tells the application to head to config/routes.rb for further instruction.
   end
 end

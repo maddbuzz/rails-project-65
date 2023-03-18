@@ -1,4 +1,5 @@
 install:
+	sudo apt install firefox
 	sudo apt install -y imagemagick libvips
 	gem install slim_lint
 	bin/setup
@@ -30,6 +31,11 @@ test-system:
 	clear || true
 	bin/rails db:environment:set RAILS_ENV=test
 	NODE_ENV=test bin/rails test:system
+
+test-all:
+	clear || true
+	bin/rails db:environment:set RAILS_ENV=test
+	NODE_ENV=test bin/rails test:all
 
 slim-lint:
 	slim-lint app/**/*.slim || true

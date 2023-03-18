@@ -61,7 +61,7 @@ module Web
       test 'admin should destroy empty' do
         sign_in @user_admin
         empty_category = Category.create!(name: 'empty')
-        # assert { empty_category.bulletins.count.zero? }
+        assert { empty_category.bulletins.count.zero? }
         assert_difference('Category.count', -1) do
           delete admin_category_path(empty_category)
         end

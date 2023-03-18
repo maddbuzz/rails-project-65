@@ -6,7 +6,6 @@ module Web
       before_action :set_category, only: %i[edit update destroy]
 
       def index
-        # @categories = Category.all.page params[:page]
         @categories = Category.page(params[:page])
         @category_bulletins_counts = Bulletin.group(:category).count
       end

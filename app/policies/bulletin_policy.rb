@@ -30,10 +30,18 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def archive?
-    update?
+    update? || user.admin?
   end
 
   def to_moderate?
     update?
+  end
+
+  def reject?
+    user.admin?
+  end
+
+  def publish?
+    user.admin?
   end
 end

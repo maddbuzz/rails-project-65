@@ -3,21 +3,21 @@
 draft:
   title: MyString1
   description: MyText1
-  user: one
+  user: system_test
   category: one
   state: draft
 
 under_moderation:
   title: MyString2
   description: MyText2
-  user: two
+  user: one
   category: one
   state: under_moderation
 
 published:
   title: MyString3
   description: MyText3
-  user: one
+  user: system_test
   category: two
   state: published
 

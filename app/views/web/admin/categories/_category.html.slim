@@ -1,13 +1,9 @@
 tr
-  /td
-    = category.id
   td
     = category.name
   td
-    / = category.bulletins.count
     = @category_bulletins_counts[category]
   td
     => link_to t('.edit'), edit_admin_category_path(category), class: 'me-1'
-    / '|
     =< link_to t('.delete'), admin_category_path(category), data: { turbo_method: :delete, turbo_confirm: t('.confirm_delete') },
     class: 'text-danger me-1'

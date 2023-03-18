@@ -1,10 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-admin:
-  name: admin
-  email: admin@gmail.com
-  admin: true
-
 one:
   name: name1
   email: email1@gmail.com
@@ -14,3 +9,13 @@ two:
   name: name2
   email: email2@gmail.com
   admin: false
+
+admin:
+  name: admin
+  email: admin@gmail.com
+  admin: true
+
+system_test:
+  name: System Test User
+  email: system@test.com
+  admin: true

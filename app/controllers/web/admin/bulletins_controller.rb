@@ -5,10 +5,6 @@ module Web
     class BulletinsController < Web::Admin::ApplicationController
       before_action :set_bulletin, only: %i[archive publish reject]
 
-      def index_under_moderation
-        @bulletins = Bulletin.under_moderation.order(updated_at: :desc).page params[:page]
-      end
-
       def index
         @q = Bulletin.ransack(params[:q])
         @bulletins = @q.result.order(updated_at: :desc).page params[:page]
@@ -18,7 +14,6 @@ module Web
         return unless @bulletin.may_archive?
 
         @bulletin.archive!
-        # redirect_to admin_path, notice: t('.success')
         redirect_back fallback_location: admin_path, notice: t('.success')
       end
 
@@ -40,7 +35,6 @@ module Web
 
       def set_bulletin
         @bulletin = Bulletin.find(params[:id])
-        # authorize @bulletin
       end
     end
   end

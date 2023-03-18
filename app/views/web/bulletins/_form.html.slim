@@ -12,7 +12,6 @@
     = f.input :description
     = f.association :category
     / https://edgeguides.rubyonrails.org/active_storage_overview.html#direct-uploads
-    / = f.input :image, as: :file, input_html: { direct_upload: true, class: 'form-control' }
     = f.input :image, as: :file, input_html: { direct_upload: false, class: 'form-control' }
 
   - if @bulletin.image_attachment

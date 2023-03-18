@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+FIXTURE_IMAGES_FILE_PATH = 'test/fixtures/files/'
+
 ActiveRecord::Base.transaction do
   image_names = %w[food_0 food_1 food_2 food_3 food_4]
 
@@ -22,7 +24,7 @@ ActiveRecord::Base.transaction do
 
     filename = "#{image_names.sample}.jpg"
     b.image.attach(
-      io: File.open("test/fixtures/files/#{filename}"),
+      io: File.open("#{FIXTURE_IMAGES_FILE_PATH}#{filename}"),
       filename:
     )
     b.save!

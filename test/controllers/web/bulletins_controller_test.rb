@@ -8,8 +8,6 @@ module Web
       @test_i18n_path = 'web.bulletins'
 
       @bulletin = bulletins(:draft)
-      # @bulletin.image.attach fixture_file_upload('food_3.jpg')
-      # @bulletin.save!
 
       @attrs = {
         title: Faker::Lorem.sentence,
@@ -59,18 +57,9 @@ module Web
     test 'should update bulletin' do
       sign_in @bulletin.user
       patch bulletin_path(@bulletin), params: { bulletin: @attrs }
-      # assert_redirected_to bulletin_path(@bulletin)
       assert_redirected_to profile_path
       assert_flash 'update.success'
     end
-
-    # test 'should destroy bulletin' do
-    #   sign_in @bulletin.user
-    #   assert_difference('Bulletin.count', -1) do
-    #     delete bulletin_path(@bulletin)
-    #   end
-    #   assert_redirected_to bulletins_path
-    # end
 
     test 'should archive bulletin' do
       sign_in @bulletin.user

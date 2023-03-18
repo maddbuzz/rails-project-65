@@ -7,3 +7,18 @@ second_image_attachment:
   name: image
   record: under_moderation (Bulletin)
   blob: second_image_blob
+
+third_image_attachment:
+  name: image
+  record: published (Bulletin)
+  blob: third_image_blob
+
+fourth_image_attachment:
+  name: image
+  record: rejected (Bulletin)
+  blob: fourth_image_blob
+
+fifth_image_attachment:
+  name: image
+  record: archived (Bulletin)
+  blob: fifth_image_blob

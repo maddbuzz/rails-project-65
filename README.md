@@ -20,6 +20,14 @@ make dev-start
 ```
 make test
 ```
+## Start system tests
+You need to install Firefox first
+```
+sudo apt install firefox
+```
+```
+make test-system
+```
 ## Start linters
 ```
 make lint
