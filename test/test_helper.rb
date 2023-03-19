@@ -4,9 +4,6 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
-# Теперь OmniAuth в тестах не обращается к внешним источникам
-OmniAuth.config.test_mode = true
-
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
@@ -24,6 +21,9 @@ end
 def assert_flash(i18n_path, type = :notice, common_i18n_path = @test_i18n_path)
   assert_equal t("#{common_i18n_path}.#{i18n_path}"), flash[type]
 end
+
+# Теперь OmniAuth в тестах не обращается к внешним источникам
+OmniAuth.config.test_mode = true
 
 def mock_omni_auth(user, provider = :github)
   auth_hash = {

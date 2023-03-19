@@ -29,8 +29,8 @@ jobs:
     - name: Run linters
       run: make lint
 
-    - name: Run tests
-      run: make test
+    # - name: Run tests
+    #   run: make test
 
-    - name: Run system tests in headless mode
-      run: make test-system-headless
+    - name: Run All Tests in Headless Mode
+      run: MOZ_HEADLESS=1 rails test:all
