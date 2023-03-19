@@ -12,15 +12,7 @@ module Web
     end
 
     test 'check callback and logout' do
-      auth_hash = {
-        provider: 'github',
-        uid: '12345',
-        info: {
-          email: Faker::Internet.email,
-          name: Faker::Name.first_name
-        }
-      }
-      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
+      mock_omni_auth(users(:one))
 
       get callback_auth_path('github')
       assert_response :redirect
