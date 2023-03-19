@@ -24,7 +24,7 @@ jobs:
         bundler-cache: true
 
     - name: Install dependencies
-      run: make install
+      run: make install-without-production
 
     - name: Run linters
       run: make lint
@@ -33,4 +33,4 @@ jobs:
     #   run: make test
 
     - name: Run All Tests in Headless Mode
-      run: MOZ_HEADLESS=1 rails test:all
+      run: MOZ_HEADLESS=1 bin/rails test:all

@@ -16,6 +16,10 @@ make install-without-production
 ```
 make dev-start
 ```
+## Start linters
+```
+make lint
+```
 ## Start tests
 ```
 make test
@@ -28,8 +32,4 @@ sudo apt install firefox
 then
 ```
 make test-system
-```
-## Start linters
-```
-make lint
 ```

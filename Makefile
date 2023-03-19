@@ -1,7 +1,5 @@
 install:
-	sudo apt install -y firefox
 	sudo apt install -y imagemagick libvips
-	gem install slim_lint
 	bin/setup
 	bin/rails assets:precompile
 	bin/rails db:seed
@@ -10,6 +8,8 @@ without-production:
 	bundle config set --local without 'production'
 
 install-without-production: without-production install
+	sudo apt install -y firefox
+	gem install slim_lint
 	cp -f .env.example .env
 
 dev-start:
