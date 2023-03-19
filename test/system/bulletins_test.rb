@@ -65,16 +65,38 @@ class BulletinsTest < ApplicationSystemTestCase
     assert_text t('web.bulletins.archive.success')
   end
 
-  test 'admin should archive' do
+  test 'only admin should have access to admin-panel' do
     visit admin_path
     assert_selector 'h1', text: t('web.admin.home.index.ads_on_moderation')
+    visit admin_bulletins_path
+    assert_selector 'h2', text: t('web.admin.bulletins.index.all_bulletins')
+    visit admin_categories_path
+    assert_selector 'h1', text: t('web.admin.categories.index.title')
+    visit admin_users_path
+    assert_selector 'h1', text: t('web.admin.users.index.title')
+
+    click_on t('layouts.shared.nav.log_out')
+    sign_in(users(:one))
+    assert_text t('web.auth.callback.signed_in')
+
+    visit admin_path
+    assert_text t('user_not_admin')
+    visit admin_bulletins_path
+    assert_text t('user_not_admin')
+    visit admin_categories_path
+    assert_text t('user_not_admin')
+    visit admin_users_path
+    assert_text t('user_not_admin')
+  end
+
+  test 'admin should archive' do
+    visit admin_path
     page.accept_confirm do
       click_on t('web.admin.home.bulletin.archive'), match: :first
     end
     assert_text t('web.admin.bulletins.archive.success')
 
     visit admin_bulletins_path
-    assert_selector 'h2', text: t('web.admin.bulletins.index.all_bulletins')
     page.accept_confirm do
       click_on t('web.admin.bulletins.bulletin.archive'), match: :first
     end
