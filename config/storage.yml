@@ -5,6 +5,11 @@ test:
 local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
+  # By default, Active Storage assumes private access to services.
+  # This means generating signed, single-use URLs for blobs.
+  # If you'd rather make blobs publicly accessible, specify
+  public: true
+  # in your app's config/storage.yml
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
