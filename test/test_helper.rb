@@ -14,6 +14,14 @@ module ActiveSupport
   end
 end
 
+def t(*args, **kwargs)
+  I18n.t(*args, **kwargs)
+end
+
+def assert_flash(i18n_path, type = :notice, common_i18n_path = @test_i18n_path)
+  assert_equal t("#{common_i18n_path}.#{i18n_path}"), flash[type]
+end
+
 module ActionDispatch
   class IntegrationTest
     # Теперь OmniAuth в тестах не обращается к внешним источникам
@@ -28,9 +36,7 @@ module ActionDispatch
           name: user.name
         }
       }
-
       OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
-
       get callback_auth_url('github')
     end
 
@@ -42,12 +48,4 @@ module ActionDispatch
       @current_user ||= User.find_by(id: session[:user_id])
     end
   end
-end
-
-def t(*args, **kwargs)
-  I18n.t(*args, **kwargs)
-end
-
-def assert_flash(i18n_path, type = :notice, common_i18n_path = @test_i18n_path)
-  assert_equal t("#{common_i18n_path}.#{i18n_path}"), flash[type]
 end

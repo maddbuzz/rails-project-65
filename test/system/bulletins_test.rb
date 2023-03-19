@@ -7,8 +7,7 @@ class BulletinsTest < ApplicationSystemTestCase
 
   setup do
     @bulletin = bulletins(:draft)
-    visit root_path
-    click_on t('layouts.shared.nav.log_in')
+    sign_in users(:system_test)
   end
 
   test 'should be on the root' do

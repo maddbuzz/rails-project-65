@@ -8,13 +8,6 @@ module Web
       user_info = request.env['omniauth.auth']
       email, name = user_info[:info].values_at(:email, :name)
 
-      # Need this
-      if Rails.env.test? && email.nil?
-        email = 'system@test.com'
-        name = 'System Test User'
-      end
-      # for system tests working!
-
       user = User.find_or_initialize_by(email: email.downcase)
       user.update(name:)
 
