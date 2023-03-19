@@ -10,7 +10,7 @@ without-production:
 install-without-production: without-production install
 	sudo apt install -y firefox
 	gem install slim_lint
-	cp -f .env.example .env
+	cp -f .env.example .env || true
 
 dev-start:
 	RAILS_ENV=development bin/rails assets:precompile
