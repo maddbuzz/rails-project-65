@@ -12,7 +12,7 @@
     = f.input :description
     = f.association :category
     / https://edgeguides.rubyonrails.org/active_storage_overview.html#direct-uploads
-    = f.input :image, as: :file, input_html: { direct_upload: false, class: 'form-control' }
+    = f.input :image, as: :file, required: true, input_html: { direct_upload: false, class: 'form-control' }
 
   - if @bulletin.image_attachment
     / For .variant you need (github.com/janko/image_processing):
