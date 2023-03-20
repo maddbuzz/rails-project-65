@@ -86,6 +86,22 @@ GEM
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    aws-eventstream (1.2.0)
+    aws-partitions (1.730.0)
+    aws-sdk-core (3.170.1)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.651.0)
+      aws-sigv4 (~> 1.5)
+      jmespath (~> 1, >= 1.6.1)
+    aws-sdk-kms (1.63.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.119.1)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.4)
+    aws-sigv4 (1.5.2)
+      aws-eventstream (~> 1, >= 1.0.2)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -119,6 +135,9 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
     ffi (1.15.5)
+    file_validators (3.0.0)
+      activemodel (>= 3.2)
+      mime-types (>= 1.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -133,6 +152,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jmespath (1.6.2)
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
     json (2.6.3)
@@ -160,6 +180,9 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
+    mime-types (3.4.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2023.0218.1)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.17.0)
@@ -332,12 +355,14 @@ PLATFORMS
 DEPENDENCIES
   aasm
   active_storage_validations
+  aws-sdk-s3
   bootsnap
   capybara
   cssbundling-rails
   debug
   dotenv-rails
   faker
+  file_validators
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails

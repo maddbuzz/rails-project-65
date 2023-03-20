@@ -6,14 +6,13 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-prod_storage:
-  service: Disk
-  root: <%= Rails.root.join("prod_storage") %>
-  # By default, Active Storage assumes private access to services.
-  # This means generating signed, single-use URLs for blobs.
-  # If you'd rather make blobs publicly accessible, specify
-  public: true
-  # in your app's config/storage.yml
+yandex:
+  service: S3
+  access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
+  region: ru-central1
+  bucket: <%= ENV['S3_BUCKET'] %>
+  endpoint: 'https://storage.yandexcloud.net'
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

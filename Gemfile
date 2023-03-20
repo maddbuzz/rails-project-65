@@ -86,7 +86,9 @@ end
 
 gem 'aasm'
 gem 'active_storage_validations'
+gem 'aws-sdk-s3'
 gem 'faker'
+gem 'file_validators'
 gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'

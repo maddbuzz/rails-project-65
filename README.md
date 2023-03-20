@@ -33,3 +33,7 @@ then
 ```
 make test-system
 ```
+or
+```
+make test-system-headless
+```
