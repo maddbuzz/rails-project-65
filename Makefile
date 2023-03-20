@@ -8,7 +8,6 @@ without-production:
 	bundle config set --local without 'production'
 
 install-without-production: without-production install
-	sudo apt install -y firefox
 	gem install slim_lint
 	cp -f .env.example .env || true
 
@@ -30,6 +29,7 @@ test:
 test-system:
 	clear || true
 	rm -rf tmp/screenshots/ || true
+	sudo apt install -y firefox
 	firefox -v
 	bin/rails db:environment:set RAILS_ENV=test
 	NODE_ENV=test bin/rails test:system
