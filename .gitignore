@@ -23,12 +23,11 @@
 !/tmp/pids/.keep
 
 # Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
-# /storage/*
-# !/storage/.keep
-/storage
 
 /public/assets
 
@@ -44,3 +43,5 @@
 
 .env.example
 .env
+
+/prod_storage
