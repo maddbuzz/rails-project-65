@@ -29,8 +29,7 @@ test:
 test-system:
 	clear || true
 	rm -rf tmp/screenshots/ || true
-	sudo apt install -y firefox
-	firefox -v
+	firefox -v || sudo apt install -y firefox
 	bin/rails db:environment:set RAILS_ENV=test
 	NODE_ENV=test bin/rails test:system
 

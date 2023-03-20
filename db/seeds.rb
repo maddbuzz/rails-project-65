@@ -13,13 +13,15 @@ ActiveRecord::Base.transaction do
   end
   categories = Category.all
 
+  states = Bulletin.aasm.states.map(&:name)
+
   200.times do
     b = Bulletin.new(
-      title: Faker::Lorem.unique.sentence,
-      description: Faker::Lorem.unique.paragraph.slice(..999),
-      category: categories.sample,
+      title: Faker::Lorem.unique.sentence.slice(...50),
+      description: Faker::Lorem.unique.paragraph.slice(...1000),
       user: users.sample,
-      state: %i[published under_moderation].sample
+      category: categories.sample,
+      state: states.sample
     )
 
     filename = "#{image_names.sample}.jpg"

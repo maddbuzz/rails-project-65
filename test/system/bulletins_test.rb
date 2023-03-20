@@ -45,7 +45,7 @@ class BulletinsTest < ApplicationSystemTestCase
     click_on t('web.profile.bulletin.edit'), match: :first
     assert_selector 'h2', text: t('web.bulletins.edit.title')
 
-    fill_in t('activerecord.attributes.bulletin.title'), with: Faker::Lorem.sentence
+    fill_in t('activerecord.attributes.bulletin.title'), with: bulletins(:archived).title
 
     click_on t('web.bulletins.edit.submit')
     assert_text t('web.bulletins.update.success')

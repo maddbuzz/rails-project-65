@@ -10,8 +10,8 @@ module Web
       @bulletin = bulletins(:draft)
 
       @attrs = {
-        title: Faker::Lorem.sentence,
-        description: Faker::Lorem.paragraph,
+        title: bulletins(:archived).title,
+        description: bulletins(:archived).description,
         image: fixture_file_upload('food_4.jpg'),
         category_id: categories(:one).id,
         user_id: users(:one).id
