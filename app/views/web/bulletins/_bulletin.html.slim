@@ -1,7 +1,8 @@
 .col-3.pt-2.d-flex
   .card.shadow-sm.flex-grow-1
-    - if bulletin.image_attachment
-      = image_tag bulletin.image, height: 200, class: 'card-img-top x-object-fit-cover'
+    - if bulletin.image.attached?
+      = link_to bulletin do
+        = image_tag bulletin.image, height: 200, class: 'card-img-top x-object-fit-cover'
 
     .card-body
       = link_to bulletin do

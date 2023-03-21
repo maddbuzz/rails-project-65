@@ -14,11 +14,9 @@
     / https://edgeguides.rubyonrails.org/active_storage_overview.html#direct-uploads
     = f.input :image, as: :file, required: true, input_html: { direct_upload: false, class: 'form-control' }
 
-  - if @bulletin.image_attachment
-    / For .variant you need (github.com/janko/image_processing):
-    / 1. $ sudo apt install imagemagick libvips
-    / 2. gem "image_processing", "~> 1.2"
-    = image_tag @bulletin.image.variant(:for_form), class: 'img-thumbnail mb-2'
+  - if @bulletin.image.attached?
+    = link_to @bulletin.image do
+      = image_tag @bulletin.image.variant(:for_form), class: 'img-thumbnail mb-2'
 
   .form-actions
     = f.button :submit, submit, class: 'mt-4 btn btn-primary'

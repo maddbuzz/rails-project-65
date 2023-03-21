@@ -5,7 +5,9 @@
 
 .row
   .col-8
-    = image_tag(@bulletin.image.variant(:for_show), class: 'img-thumbnail mb-2') if @bulletin.image.attached?
+    - if @bulletin.image.attached?
+      = link_to @bulletin.image do
+        = image_tag @bulletin.image.variant(:for_show), class: 'img-thumbnail mb-2'
     p
       = @bulletin.description
   .col-4

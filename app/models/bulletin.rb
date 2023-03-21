@@ -28,6 +28,9 @@ class Bulletin < ApplicationRecord
   belongs_to :user, class_name: 'User', inverse_of: :bulletins
 
   has_one_attached :image do |attachable|
+    # For .variant you need:
+    # 1. $ sudo apt install imagemagick libvips
+    # 2. gem "image_processing", "~> 1.2"
     attachable.variant :for_form, resize_to_limit: [nil, 100]
     attachable.variant :for_show, resize_to_limit: [400, 300]
   end
