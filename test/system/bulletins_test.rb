@@ -39,7 +39,7 @@ class BulletinsTest < ApplicationSystemTestCase
   end
 
   test 'should visit profile and update bulletin' do
-    visit profile_path
+    click_on t('layouts.shared.nav.my_bulletins')
     assert_selector 'h2', text: t('web.profile.index.my_bulletins')
 
     click_on t('web.profile.bulletin.edit'), match: :first
@@ -52,13 +52,13 @@ class BulletinsTest < ApplicationSystemTestCase
   end
 
   test 'should visit profile and send to moderate' do
-    visit profile_path
+    click_on t('layouts.shared.nav.my_bulletins')
     click_on t('web.profile.bulletin.to_moderate')
     assert_text t('web.bulletins.to_moderate.success')
   end
 
   test 'should visit profile and send to archive' do
-    visit profile_path
+    click_on t('layouts.shared.nav.my_bulletins')
     page.accept_confirm do
       click_on t('web.profile.bulletin.archive'), match: :first
     end
@@ -66,20 +66,20 @@ class BulletinsTest < ApplicationSystemTestCase
   end
 
   test 'only admin should have access to admin-panel' do
-    visit admin_path
+    click_on t('layouts.shared.nav.admin_panel')
     assert_selector 'h1', text: t('web.admin.home.index.ads_on_moderation')
-    visit admin_bulletins_path
+    click_on t('layouts.admin_panel_menu.all_ads')
     assert_selector 'h2', text: t('web.admin.bulletins.index.all_bulletins')
-    visit admin_categories_path
+    click_on t('layouts.admin_panel_menu.categories')
     assert_selector 'h1', text: t('web.admin.categories.index.title')
-    visit admin_users_path
+    click_on t('layouts.admin_panel_menu.users')
     assert_selector 'h1', text: t('web.admin.users.index.title')
 
     click_on t('layouts.shared.nav.log_out')
     sign_in(users(:one))
     assert_text t('web.auth.callback.signed_in')
 
-    visit admin_path
+    click_on t('layouts.shared.nav.admin_panel')
     assert_text t('user_not_admin')
     visit admin_bulletins_path
     assert_text t('user_not_admin')
@@ -90,13 +90,13 @@ class BulletinsTest < ApplicationSystemTestCase
   end
 
   test 'admin should archive' do
-    visit admin_path
+    click_on t('layouts.shared.nav.admin_panel')
     page.accept_confirm do
       click_on t('web.admin.home.bulletin.archive'), match: :first
     end
     assert_text t('web.admin.bulletins.archive.success')
 
-    visit admin_bulletins_path
+    click_on t('layouts.admin_panel_menu.all_ads')
     page.accept_confirm do
       click_on t('web.admin.bulletins.bulletin.archive'), match: :first
     end
@@ -104,7 +104,7 @@ class BulletinsTest < ApplicationSystemTestCase
   end
 
   test 'admin should publish' do
-    visit admin_path
+    click_on t('layouts.shared.nav.admin_panel')
     page.accept_confirm do
       click_on t('web.admin.home.bulletin.publish'), match: :first
     end
@@ -112,7 +112,7 @@ class BulletinsTest < ApplicationSystemTestCase
   end
 
   test 'admin should reject' do
-    visit admin_path
+    click_on t('layouts.shared.nav.admin_panel')
     page.accept_confirm do
       click_on t('web.admin.home.bulletin.reject'), match: :first
     end
