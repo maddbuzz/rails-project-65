@@ -12,6 +12,7 @@ Bulletin board is a service where you can post ads and search for existing ones.
 ```
 make install-without-production
 ```
+(after that fill *.env* file with correct values)
 ## Start dev-server
 ```
 make dev-start
