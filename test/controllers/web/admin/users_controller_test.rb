@@ -6,7 +6,6 @@ module Web
   module Admin
     class UsersControllerTest < ActionDispatch::IntegrationTest
       setup do
-        @test_i18n_path = 'web.admin.users'
         @user = users(:one)
         @user_admin = users(:admin)
       end
@@ -14,14 +13,14 @@ module Web
       test 'only admin should get index' do
         get admin_users_path
         assert_response :redirect
-        assert_flash 'user_not_admin', :alert, nil
+        assert_flash 'user_not_admin', :alert
 
         user = users(:two)
         sign_in user
         assert_not user.admin?
         get admin_users_path
         assert_response :redirect
-        assert_flash 'user_not_admin', :alert, nil
+        assert_flash 'user_not_admin', :alert
       end
 
       test 'admin should get index' do
@@ -40,7 +39,7 @@ module Web
         sign_in @user_admin
         patch admin_user_path(@user), params: { user: { email: 'balbes@gmail.com' } }
         assert_redirected_to admin_users_url
-        assert_flash 'update.success'
+        assert_flash 'web.admin.users.update.success'
       end
 
       test 'admin should destroy user with all dependent bulletins' do
@@ -53,7 +52,7 @@ module Web
           end
         end
         assert_redirected_to admin_users_url
-        assert_flash 'destroy.success'
+        assert_flash 'web.admin.users.destroy.success'
       end
     end
   end

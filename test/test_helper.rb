@@ -18,8 +18,8 @@ def t(*args, **kwargs)
   I18n.t(*args, **kwargs)
 end
 
-def assert_flash(i18n_path, type = :notice, common_i18n_path = @test_i18n_path)
-  assert_equal t("#{common_i18n_path}.#{i18n_path}"), flash[type]
+def assert_flash(i18n_path, type = :notice)
+  assert_equal t(i18n_path), flash[type]
 end
 
 # Теперь OmniAuth в тестах не обращается к внешним источникам

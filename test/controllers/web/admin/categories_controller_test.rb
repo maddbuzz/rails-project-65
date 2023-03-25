@@ -6,7 +6,6 @@ module Web
   module Admin
     class CategoriesControllerTest < ActionDispatch::IntegrationTest
       setup do
-        @test_i18n_path = 'web.admin.categories'
         @category = categories(:one)
         @user_admin = users(:admin)
       end
@@ -14,14 +13,14 @@ module Web
       test 'only admin should get index' do
         get admin_categories_path
         assert_response :redirect
-        assert_flash 'user_not_admin', :alert, nil
+        assert_flash 'user_not_admin', :alert
 
         user = users(:two)
         sign_in user
         assert_not user.admin?
         get admin_categories_path
         assert_response :redirect
-        assert_flash 'user_not_admin', :alert, nil
+        assert_flash 'user_not_admin', :alert
       end
 
       test 'admin should get index' do
@@ -42,7 +41,7 @@ module Web
           post admin_categories_path, params: { category: { name: 'Drugs' } }
         end
         assert_redirected_to admin_categories_url
-        assert_flash 'create.success'
+        assert_flash 'web.admin.categories.create.success'
       end
 
       test 'admin should get edit' do
@@ -55,7 +54,7 @@ module Web
         sign_in @user_admin
         patch admin_category_path(@category), params: { category: { name: 'Weapons' } }
         assert_redirected_to admin_categories_url
-        assert_flash 'update.success'
+        assert_flash 'web.admin.categories.update.success'
       end
 
       test 'admin should destroy empty' do
@@ -66,7 +65,7 @@ module Web
           delete admin_category_path(empty_category)
         end
         assert_redirected_to admin_categories_url
-        assert_flash 'destroy.success'
+        assert_flash 'web.admin.categories.destroy.success'
       end
 
       test 'cannot destroy non-empty' do
@@ -76,7 +75,7 @@ module Web
           delete admin_category_path(@category)
         end
         assert_redirected_to admin_categories_url
-        assert_flash 'destroy.fail', :alert
+        assert_flash 'web.admin.categories.destroy.fail', :alert
       end
     end
   end

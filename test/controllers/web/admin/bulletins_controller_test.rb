@@ -6,24 +6,21 @@ module Web
   module Admin
     class BulletinsControllerTest < ActionDispatch::IntegrationTest
       setup do
-        @test_i18n_path = 'web.admin.bulletins'
-
         @user_admin = users(:admin)
-
         @bulletin = bulletins(:under_moderation)
       end
 
       test 'only admin should get index' do
         get admin_bulletins_path
         assert_response :redirect
-        assert_flash 'user_not_admin', :alert, nil
+        assert_flash 'user_not_admin', :alert
 
         user = users(:one)
         sign_in user
         assert_not user.admin?
         get admin_bulletins_path
         assert_response :redirect
-        assert_flash 'user_not_admin', :alert, nil
+        assert_flash 'user_not_admin', :alert
       end
 
       test 'admin should get index' do
@@ -39,7 +36,7 @@ module Web
         @bulletin.reload
         assert { @bulletin.archived? }
         assert_response :redirect
-        assert_flash 'archive.success'
+        assert_flash 'web.admin.bulletins.archive.success'
       end
 
       test 'should publish bulletin' do
@@ -49,7 +46,7 @@ module Web
         @bulletin.reload
         assert { @bulletin.published? }
         assert_redirected_to admin_path
-        assert_flash 'publish.success'
+        assert_flash 'web.admin.bulletins.publish.success'
       end
 
       test 'should reject bulletin' do
@@ -59,7 +56,7 @@ module Web
         @bulletin.reload
         assert { @bulletin.rejected? }
         assert_redirected_to admin_path
-        assert_flash 'reject.success'
+        assert_flash 'web.admin.bulletins.reject.success'
       end
     end
   end

@@ -5,16 +5,12 @@ require 'test_helper'
 module Web
   class BulletinsControllerTest < ActionDispatch::IntegrationTest
     setup do
-      @test_i18n_path = 'web.bulletins'
-
       @bulletin = bulletins(:draft)
 
       @attrs = {
         title: bulletins(:archived).title,
         description: bulletins(:archived).description,
-        image: fixture_file_upload('food_4.jpg'),
-        category_id: categories(:one).id,
-        user_id: users(:one).id
+        category_id: categories(:two).id
       }
     end
 
@@ -36,11 +32,14 @@ module Web
 
     test 'should create bulletin' do
       sign_in users(:one)
-      assert_difference('Bulletin.count') do
-        post bulletins_path, params: { bulletin: @attrs }
+      image = fixture_file_upload('food_4.jpg')
+      assert_difference('Bulletin.count', +1) do
+        post bulletins_path, params: { bulletin: { **@attrs, image: } }
       end
-      assert_redirected_to bulletin_path(Bulletin.last)
-      assert_flash 'create.success'
+      last_bulletin = Bulletin.last
+      assert_redirected_to bulletin_path(last_bulletin)
+      assert_flash 'web.bulletins.create.success'
+      assert { Bulletin.where(@attrs).last == last_bulletin }
     end
 
     test 'should show bulletin' do
@@ -56,29 +55,31 @@ module Web
 
     test 'should update bulletin' do
       sign_in @bulletin.user
+      bulletin_was_updated_at = @bulletin.updated_at
       patch bulletin_path(@bulletin), params: { bulletin: @attrs }
       assert_redirected_to profile_path
-      assert_flash 'update.success'
+      assert_flash 'web.bulletins.update.success'
+      @bulletin.reload
+      assert { bulletin_was_updated_at != @bulletin.updated_at }
+      assert { Bulletin.where(@attrs).include? @bulletin }
     end
 
     test 'should archive bulletin' do
       sign_in @bulletin.user
-      assert { @bulletin.may_archive? }
       patch archive_bulletin_url(@bulletin)
       @bulletin.reload
       assert { @bulletin.archived? }
       assert_redirected_to profile_path
-      assert_flash 'archive.success'
+      assert_flash 'web.bulletins.archive.success'
     end
 
     test 'should to_moderate bulletin' do
       sign_in @bulletin.user
-      assert { @bulletin.may_to_moderate? }
       patch to_moderate_bulletin_path(@bulletin)
       @bulletin.reload
       assert { @bulletin.under_moderation? }
       assert_redirected_to profile_url
-      assert_flash 'to_moderate.success'
+      assert_flash 'web.bulletins.to_moderate.success'
     end
   end
 end
