@@ -2,9 +2,10 @@
 
 require 'application_system_test_case'
 
-class BulletinsTest < ApplicationSystemTestCase
-  FIXTURE_IMAGE_FILE_PATH = 'test/fixtures/files/food_4.jpg'
+FIXTURE_IMAGE_FILE_PATH = 'test/fixtures/files/food_4.jpg'
 
+# rubocop:disable Metrics/ClassLength
+class BulletinsTest < ApplicationSystemTestCase
   setup do
     @bulletin = bulletins(:draft)
     sign_in users(:system_test)
@@ -156,3 +157,4 @@ class BulletinsTest < ApplicationSystemTestCase
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
