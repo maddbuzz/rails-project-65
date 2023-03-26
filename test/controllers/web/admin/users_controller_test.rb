@@ -34,16 +34,13 @@ module Web
         assert_response :success
       end
 
-      test 'admin should update' do
+      test 'admin should make user admin' do
         sign_in @user_admin
-        user_was_updated_at = @user.updated_at
-        email = Faker::Internet.email
-        patch admin_user_path(@user), params: { user: { email: } }
+        assert { !@user.admin? }
+        patch admin_user_path(@user), params: { user: { admin: true } }
         assert_redirected_to admin_users_path
         assert_flash 'web.admin.users.update.success'
-        @user.reload
-        assert { user_was_updated_at < @user.updated_at }
-        assert { User.where(email:).include? @user }
+        assert { @user.reload.admin? }
       end
 
       test 'admin should destroy user with all dependent bulletins' do

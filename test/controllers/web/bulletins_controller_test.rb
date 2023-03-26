@@ -39,7 +39,7 @@ module Web
       last_bulletin = Bulletin.last
       assert_redirected_to bulletin_path(last_bulletin)
       assert_flash 'web.bulletins.create.success'
-      assert { Bulletin.where(@attrs).last == last_bulletin }
+      assert { @attrs.stringify_keys <= last_bulletin.as_json }
     end
 
     test 'should show bulletin' do
@@ -55,13 +55,11 @@ module Web
 
     test 'should update bulletin' do
       sign_in @bulletin.user
-      bulletin_was_updated_at = @bulletin.updated_at
       patch bulletin_path(@bulletin), params: { bulletin: @attrs }
       assert_redirected_to profile_path
       assert_flash 'web.bulletins.update.success'
       @bulletin.reload
-      assert { bulletin_was_updated_at < @bulletin.updated_at }
-      assert { Bulletin.where(@attrs).include? @bulletin }
+      assert { @attrs.stringify_keys <= @bulletin.as_json }
     end
 
     test 'should archive bulletin' do

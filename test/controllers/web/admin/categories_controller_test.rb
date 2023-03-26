@@ -43,7 +43,7 @@ module Web
         end
         assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.create.success'
-        assert { Category.where(name:).last == Category.last }
+        assert { { name: }.stringify_keys <= Category.last.as_json }
       end
 
       test 'admin should get edit' do
@@ -54,14 +54,12 @@ module Web
 
       test 'admin should update' do
         sign_in @user_admin
-        category_was_updated_at = @category.updated_at
         name = Faker::Lorem.sentence
         patch admin_category_path(@category), params: { category: { name: } }
         assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.update.success'
         @category.reload
-        assert { category_was_updated_at < @category.updated_at }
-        assert { Category.where(name:).include? @category }
+        assert { { name: }.stringify_keys <= @category.as_json }
       end
 
       test 'admin should destroy empty' do
