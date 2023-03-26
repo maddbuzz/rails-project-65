@@ -15,9 +15,8 @@ module Web
         assert_response :redirect
         assert_flash 'user_not_admin', :alert
 
-        user = users(:two)
-        sign_in user
-        assert_not user.admin?
+        sign_in @user
+        assert_not @user.admin?
         get admin_users_path
         assert_response :redirect
         assert_flash 'user_not_admin', :alert
@@ -37,22 +36,29 @@ module Web
 
       test 'admin should update' do
         sign_in @user_admin
-        patch admin_user_path(@user), params: { user: { email: 'balbes@gmail.com' } }
-        assert_redirected_to admin_users_url
+        user_was_updated_at = @user.updated_at
+        email = Faker::Internet.email
+        patch admin_user_path(@user), params: { user: { email: } }
+        assert_redirected_to admin_users_path
         assert_flash 'web.admin.users.update.success'
+        @user.reload
+        assert { user_was_updated_at < @user.updated_at }
+        assert { User.where(email:).include? @user }
       end
 
       test 'admin should destroy user with all dependent bulletins' do
         sign_in @user_admin
+        assert { User.exists?(@user.id) }
         user_bulletins_count = @user.bulletins.count
-        assert_not user_bulletins_count.zero?
+        assert { !user_bulletins_count.zero? }
         assert_difference('Bulletin.count', -user_bulletins_count) do
           assert_difference('User.count', -1) do
             delete admin_user_path(@user)
           end
         end
-        assert_redirected_to admin_users_url
+        assert_redirected_to admin_users_path
         assert_flash 'web.admin.users.destroy.success'
+        assert { !User.exists?(@user.id) }
       end
     end
   end

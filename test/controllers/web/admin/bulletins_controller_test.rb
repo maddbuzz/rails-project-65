@@ -31,32 +31,26 @@ module Web
 
       test 'should archive bulletin' do
         sign_in @user_admin
-        assert { @bulletin.may_archive? }
         patch archive_admin_bulletin_url(@bulletin)
-        @bulletin.reload
-        assert { @bulletin.archived? }
         assert_response :redirect
         assert_flash 'web.admin.bulletins.archive.success'
+        assert { @bulletin.reload.archived? }
       end
 
       test 'should publish bulletin' do
         sign_in @user_admin
-        assert { @bulletin.may_publish? }
         patch publish_admin_bulletin_path(@bulletin)
-        @bulletin.reload
-        assert { @bulletin.published? }
         assert_redirected_to admin_path
         assert_flash 'web.admin.bulletins.publish.success'
+        assert { @bulletin.reload.published? }
       end
 
       test 'should reject bulletin' do
         sign_in @user_admin
-        assert { @bulletin.may_reject? }
         patch reject_admin_bulletin_path(@bulletin)
-        @bulletin.reload
-        assert { @bulletin.rejected? }
         assert_redirected_to admin_path
         assert_flash 'web.admin.bulletins.reject.success'
+        assert { @bulletin.reload.rejected? }
       end
     end
   end

@@ -60,26 +60,24 @@ module Web
       assert_redirected_to profile_path
       assert_flash 'web.bulletins.update.success'
       @bulletin.reload
-      assert { bulletin_was_updated_at != @bulletin.updated_at }
+      assert { bulletin_was_updated_at < @bulletin.updated_at }
       assert { Bulletin.where(@attrs).include? @bulletin }
     end
 
     test 'should archive bulletin' do
       sign_in @bulletin.user
       patch archive_bulletin_url(@bulletin)
-      @bulletin.reload
-      assert { @bulletin.archived? }
       assert_redirected_to profile_path
       assert_flash 'web.bulletins.archive.success'
+      assert { @bulletin.reload.archived? }
     end
 
     test 'should to_moderate bulletin' do
       sign_in @bulletin.user
       patch to_moderate_bulletin_path(@bulletin)
-      @bulletin.reload
-      assert { @bulletin.under_moderation? }
       assert_redirected_to profile_url
       assert_flash 'web.bulletins.to_moderate.success'
+      assert { @bulletin.reload.under_moderation? }
     end
   end
 end

@@ -37,11 +37,13 @@ module Web
 
       test 'admin should create' do
         sign_in @user_admin
-        assert_difference('Category.count') do
-          post admin_categories_path, params: { category: { name: 'Drugs' } }
+        name = Faker::Lorem.sentence
+        assert_difference('Category.count', +1) do
+          post admin_categories_path, params: { category: { name: } }
         end
-        assert_redirected_to admin_categories_url
+        assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.create.success'
+        assert { Category.where(name:).last == Category.last }
       end
 
       test 'admin should get edit' do
@@ -52,30 +54,36 @@ module Web
 
       test 'admin should update' do
         sign_in @user_admin
-        patch admin_category_path(@category), params: { category: { name: 'Weapons' } }
-        assert_redirected_to admin_categories_url
+        category_was_updated_at = @category.updated_at
+        name = Faker::Lorem.sentence
+        patch admin_category_path(@category), params: { category: { name: } }
+        assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.update.success'
+        @category.reload
+        assert { category_was_updated_at < @category.updated_at }
+        assert { Category.where(name:).include? @category }
       end
 
       test 'admin should destroy empty' do
         sign_in @user_admin
-        empty_category = Category.create!(name: 'empty')
-        assert { empty_category.bulletins.count.zero? }
-        assert_difference('Category.count', -1) do
-          delete admin_category_path(empty_category)
-        end
-        assert_redirected_to admin_categories_url
+        name = 'empty'
+        assert { !Category.exists?(name:) }
+        empty_category = Category.create!(name:)
+        assert { Category.exists?(name:) }
+        delete admin_category_path(empty_category)
+        assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.destroy.success'
+        assert { !Category.exists?(name:) }
       end
 
       test 'cannot destroy non-empty' do
         sign_in @user_admin
-        assert_not @category.bulletins.count.zero?
-        assert_difference('Category.count', 0) do
-          delete admin_category_path(@category)
-        end
-        assert_redirected_to admin_categories_url
+        assert { Category.exists?(@category.id) }
+        assert { !@category.bulletins.count.zero? }
+        delete admin_category_path(@category)
+        assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.destroy.fail', :alert
+        assert { Category.exists?(@category.id) }
       end
     end
   end
