@@ -36,6 +36,8 @@ test-system:
 test-system-headless:
 	MOZ_HEADLESS=1 make test-system
 
+test-all: test-system-headless test
+
 slim-lint:
 	slim-lint app/**/*.slim || true
 
