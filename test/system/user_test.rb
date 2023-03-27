@@ -4,11 +4,10 @@ require 'application_system_test_case'
 
 FIXTURE_IMAGE_FILE_PATH = 'test/fixtures/files/food_4.jpg'
 
-# rubocop:disable Metrics/ClassLength
-class BulletinsTest < ApplicationSystemTestCase
+class UserTest < ApplicationSystemTestCase
   setup do
     @bulletin = bulletins(:draft)
-    sign_in users(:system_test)
+    sign_in users(:two)
   end
 
   test 'should be on the root' do
@@ -99,19 +98,6 @@ class BulletinsTest < ApplicationSystemTestCase
 
   test 'only admin should have access to admin-panel' do
     click_on t('layouts.shared.nav.admin_panel')
-    assert_selector 'h1', text: t('web.admin.home.index.ads_on_moderation')
-    click_on t('layouts.admin_panel_menu.all_ads')
-    assert_selector 'h2', text: t('web.admin.bulletins.index.all_bulletins')
-    click_on t('layouts.admin_panel_menu.categories')
-    assert_selector 'h1', text: t('web.admin.categories.index.title')
-    click_on t('layouts.admin_panel_menu.users')
-    assert_selector 'h1', text: t('web.admin.users.index.title')
-
-    click_on t('layouts.shared.nav.log_out')
-    sign_in(users(:one))
-    assert_text t('web.auth.callback.signed_in')
-
-    click_on t('layouts.shared.nav.admin_panel')
     assert_text t('user_not_admin')
     visit admin_bulletins_path
     assert_text t('user_not_admin')
@@ -120,41 +106,4 @@ class BulletinsTest < ApplicationSystemTestCase
     visit admin_users_path
     assert_text t('user_not_admin')
   end
-
-  test 'admin should archive' do
-    click_on t('layouts.shared.nav.admin_panel')
-    assert_difference('Bulletin.archived.count', +2) do
-      page.accept_confirm do
-        click_on t('web.admin.home.bulletin.archive'), match: :first
-      end
-      assert_text t('web.admin.bulletins.archive.success')
-
-      click_on t('layouts.admin_panel_menu.all_ads')
-      page.accept_confirm do
-        click_on t('web.admin.bulletins.bulletin.archive'), match: :first
-      end
-      assert_text t('web.admin.bulletins.archive.success')
-    end
-  end
-
-  test 'admin should publish' do
-    click_on t('layouts.shared.nav.admin_panel')
-    assert_difference('Bulletin.published.count', +1) do
-      page.accept_confirm do
-        click_on t('web.admin.home.bulletin.publish'), match: :first
-      end
-      assert_text t('web.admin.bulletins.publish.success')
-    end
-  end
-
-  test 'admin should reject' do
-    click_on t('layouts.shared.nav.admin_panel')
-    assert_difference('Bulletin.rejected.count', +1) do
-      page.accept_confirm do
-        click_on t('web.admin.home.bulletin.reject'), match: :first
-      end
-      assert_text t('web.admin.bulletins.reject.success')
-    end
-  end
 end
-# rubocop:enable Metrics/ClassLength

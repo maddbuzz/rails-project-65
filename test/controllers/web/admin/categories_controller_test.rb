@@ -43,7 +43,7 @@ module Web
         end
         assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.create.success'
-        assert { { name: }.stringify_keys <= Category.last.as_json }
+        assert { name == Category.last.name }
       end
 
       test 'admin should get edit' do
@@ -58,8 +58,7 @@ module Web
         patch admin_category_path(@category), params: { category: { name: } }
         assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.update.success'
-        @category.reload
-        assert { { name: }.stringify_keys <= @category.as_json }
+        assert { name == @category.reload.name }
       end
 
       test 'admin should destroy empty' do
