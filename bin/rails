@@ -4,10 +4,10 @@
 APP_PATH = File.expand_path('../config/application', __dir__)
 require_relative '../config/boot'
 
-if ENV['RAILS_ENV'] == 'test'
+if ENV['RAILS_ENV'] == 'test' && ENV.fetch('COVERAGE', nil)
   require 'simplecov'
   SimpleCov.start 'rails'
-  puts 'required simplecov'
+  puts '### bin/rails required simplecov ###'
 end
 
 require 'rails/commands'

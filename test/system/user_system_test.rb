@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 FIXTURE_IMAGE_FILE_PATH = 'test/fixtures/files/food_4.jpg'
 
-class UserTest < ApplicationSystemTestCase
+class UserSystemTest < ApplicationSystemTestCase
   setup do
     @bulletin = bulletins(:draft)
     @user = users(:two)

@@ -29,17 +29,17 @@ jobs:
     - name: Run linters
       run: make lint
 
-    - name: Run system tests headless
-      run: make test-system-headless
+    # - name: Run system tests headless
+    #   run: make test-system-headless
 
-    - name: Run tests
-      run: make test
+    # - name: Run tests
+    #   run: make test
 
-    - name: publish code coverage
+    - name: Run tests & publish code coverage
       # https://github.com/paambaati/codeclimate-action
       uses: paambaati/codeclimate-action@v3.2.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        coverageCommand: make test-all
-        debug: true
+        coverageCommand: make test-all-coverage
+        debug: false

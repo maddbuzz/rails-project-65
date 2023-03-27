@@ -2,7 +2,7 @@
 
 require 'application_system_test_case'
 
-class AdminTest < ApplicationSystemTestCase
+class AdminSystemTest < ApplicationSystemTestCase
   setup do
     @bulletin = bulletins(:draft)
     sign_in users(:system_test)

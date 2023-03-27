@@ -2,7 +2,7 @@
 
 require 'application_system_test_case'
 
-class GuestTest < ApplicationSystemTestCase
+class GuestSystemTest < ApplicationSystemTestCase
   setup do
     @bulletin = bulletins(:published)
   end
