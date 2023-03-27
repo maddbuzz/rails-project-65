@@ -5,6 +5,7 @@ require 'test_helper'
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   # (need to install Firefox first: sudo apt install firefox)
   driven_by :selenium, using: :firefox
+  # driven_by :selenium_headless
 
   def sign_in(user, _options = {})
     mock_omni_auth(user)

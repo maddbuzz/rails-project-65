@@ -12,10 +12,12 @@ class GuestTest < ApplicationSystemTestCase
     assert_selector 'h2', text: t('web.bulletins.index.bulletins')
   end
 
-  test 'should show bulletin' do
+  test 'should click bulletin and visit show' do
     visit root_path
-    # click_on @bulletin.title, match: :first
-    visit bulletin_path(@bulletin)
+
+    # click_on @bulletin.title # DON'T WORK: Selenium::WebDriver::Error::ElementNotInteractableError: Element <a href="/bulletins/675045400"> could not be scrolled into view
+    find(:xpath, "//*[@href='#{bulletin_path(@bulletin)}']", match: :first).click # WORK !!!
+
     assert_selector 'h2', text: @bulletin.title
     assert_text @bulletin.user.name
     assert_text @bulletin.description

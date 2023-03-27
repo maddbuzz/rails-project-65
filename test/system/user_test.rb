@@ -7,7 +7,8 @@ FIXTURE_IMAGE_FILE_PATH = 'test/fixtures/files/food_4.jpg'
 class UserTest < ApplicationSystemTestCase
   setup do
     @bulletin = bulletins(:draft)
-    sign_in users(:two)
+    @user = users(:two)
+    sign_in @user
   end
 
   test 'should be on the root' do
@@ -21,11 +22,16 @@ class UserTest < ApplicationSystemTestCase
     assert_text t('web.auth.callback.signed_in')
   end
 
-  test 'should show bulletin' do
-    visit bulletin_path(@bulletin)
-    assert_selector 'h2', text: @bulletin.title
-    assert_text @bulletin.user.name
-    assert_text @bulletin.description
+  test 'should visit profile and visit show' do
+    click_on t('layouts.shared.nav.my_bulletins')
+    assert_selector 'h2', text: t('web.profile.index.my_bulletins')
+
+    bulletin = @user.bulletins.sample
+    find(:xpath, "//*[@href='#{bulletin_path(bulletin)}']").click
+
+    assert_selector 'h2', text: bulletin.title
+    assert_text bulletin.user.name
+    assert_text bulletin.description
 
     ## Selector Attribute Values
     # Several operators are supported for matching attributes:
@@ -36,7 +42,7 @@ class UserTest < ApplicationSystemTestCase
     # name*=value – The attribute value must contain the specified value.
     # name~=word – The attribute value must contain the specified word (space separated).
     # name|=word – The attribute value must start with specified word.
-    assert_selector "img[src$='#{@bulletin.image.filename}'][class*='img-thumbnail']"
+    assert_selector "img[src$='#{bulletin.image.filename}'][class*='img-thumbnail']"
   end
 
   test 'should create bulletin' do
@@ -62,7 +68,6 @@ class UserTest < ApplicationSystemTestCase
 
   test 'should visit profile and update bulletin' do
     click_on t('layouts.shared.nav.my_bulletins')
-    assert_selector 'h2', text: t('web.profile.index.my_bulletins')
 
     click_on t('web.profile.bulletin.edit'), match: :first
     assert_selector 'h2', text: t('web.bulletins.edit.title')
