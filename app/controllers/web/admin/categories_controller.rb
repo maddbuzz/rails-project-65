@@ -19,32 +19,26 @@ module Web
       def create
         @category = Category.new(category_params)
 
-        respond_to do |format|
-          if @category.save
-            format.html { redirect_to admin_categories_url, notice: t('.success') }
-          else
-            format.html { render :new, status: :unprocessable_entity }
-          end
+        if @category.save
+          redirect_to admin_categories_url, notice: t('.success')
+        else
+          render :new, status: :unprocessable_entity
         end
       end
 
       def update
-        respond_to do |format|
-          if @category.update(category_params)
-            format.html { redirect_to admin_categories_url, notice: t('.success') }
-          else
-            format.html { render :edit, status: :unprocessable_entity }
-          end
+        if @category.update(category_params)
+          redirect_to admin_categories_url, notice: t('.success')
+        else
+          render :edit, status: :unprocessable_entity
         end
       end
 
       def destroy
-        respond_to do |format|
-          if @category.destroy
-            format.html { redirect_to admin_categories_url, status: :see_other, notice: t('.success') }
-          else
-            format.html { redirect_to admin_categories_url, alert: t('.fail') }
-          end
+        if @category.destroy
+          redirect_to admin_categories_url, status: :see_other, notice: t('.success')
+        else
+          redirect_to admin_categories_url, alert: t('.fail')
         end
       end
 

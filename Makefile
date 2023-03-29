@@ -12,8 +12,7 @@ install-without-production: without-production install
 	cp -n .env.example .env || true
 
 dev-start:
-	RAILS_ENV=development bin/rails assets:precompile
-	bin/rails s -p 3000 -b "localhost"
+	bin/rails s
 
 start:
 	bin/rails s -p 3000 -b "0.0.0.0"

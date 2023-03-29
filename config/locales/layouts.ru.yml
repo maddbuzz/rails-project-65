@@ -14,8 +14,10 @@ ru:
       footer:
         created_by: Проект
         hexlet_student: 'студента "Хекслета"'
-    admin_panel_menu:
-      ads_on_moderation: Объявления на модерации
-      all_ads: Все объявления
-      categories: Категории
-      users: Пользователи
+    web:
+      admin:
+        admin_panel_menu:
+          ads_on_moderation: Объявления на модерации
+          all_ads: Все объявления
+          categories: Категории
+          users: Пользователи

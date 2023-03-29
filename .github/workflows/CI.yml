@@ -29,12 +29,6 @@ jobs:
     - name: Run linters
       run: make lint
 
-    # - name: Run system tests headless
-    #   run: make test-system-headless
-
-    # - name: Run tests
-    #   run: make test
-
     - name: Run tests & publish code coverage
       # https://github.com/paambaati/codeclimate-action
       uses: paambaati/codeclimate-action@v3.2.0

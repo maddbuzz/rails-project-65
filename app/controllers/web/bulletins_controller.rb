@@ -27,33 +27,27 @@ module Web
       @bulletin = current_user.bulletins.new(bulletin_params)
       authorize @bulletin
 
-      respond_to do |format|
-        if @bulletin.save
-          format.html { redirect_to bulletin_url(@bulletin), notice: t('.success') }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-        end
+      if @bulletin.save
+        redirect_to bulletin_url(@bulletin), notice: t('.success')
+      else
+        render :new, status: :unprocessable_entity
       end
     end
 
     def update
       resize_uploaded_image
 
-      respond_to do |format|
-        if @bulletin.update(bulletin_params)
-          format.html { redirect_to profile_path, notice: t('.success') }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-        end
+      if @bulletin.update(bulletin_params)
+        redirect_to profile_path, notice: t('.success')
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       @bulletin.destroy
 
-      respond_to do |format|
-        format.html { redirect_to bulletins_url, status: :see_other, notice: t('.success') }
-      end
+      redirect_to bulletins_url, status: :see_other, notice: t('.success')
     end
 
     def archive

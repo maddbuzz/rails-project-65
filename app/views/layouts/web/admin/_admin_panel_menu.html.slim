@@ -7,4 +7,4 @@
 ul.nav.flex-column.nav-pills
   - menu_items.each do |item|
     li.nav-item
-      = link_to item[:title], item[:url], class: "#{common_classes} #{'active' if item[:url] == request_url}"
+      = link_to item[:title], item[:url], class: class_names(common_classes, { active: current_page?(item[:url]) })

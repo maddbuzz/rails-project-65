@@ -11,13 +11,13 @@ class AdminSystemTest < ApplicationSystemTestCase
   test 'admin should have access to admin panel' do
     click_on t('layouts.shared.nav.admin_panel')
     assert_selector 'h1', text: t('web.admin.home.index.ads_on_moderation')
-    click_on t('layouts.admin_panel_menu.all_ads')
+    click_on t('layouts.web.admin.admin_panel_menu.all_ads')
     assert_selector 'h2', text: t('web.admin.bulletins.index.all_bulletins')
-    click_on t('layouts.admin_panel_menu.categories')
+    click_on t('layouts.web.admin.admin_panel_menu.categories')
     assert_selector 'h1', text: t('web.admin.categories.index.title')
-    click_on t('layouts.admin_panel_menu.users')
+    click_on t('layouts.web.admin.admin_panel_menu.users')
     assert_selector 'h1', text: t('web.admin.users.index.title')
-    click_on t('layouts.admin_panel_menu.ads_on_moderation')
+    click_on t('layouts.web.admin.admin_panel_menu.ads_on_moderation')
     assert_selector 'h1', text: t('web.admin.home.index.ads_on_moderation')
   end
 
@@ -29,7 +29,7 @@ class AdminSystemTest < ApplicationSystemTestCase
       end
       assert_text t('web.admin.bulletins.archive.success')
 
-      click_on t('layouts.admin_panel_menu.all_ads')
+      click_on t('layouts.web.admin.admin_panel_menu.all_ads')
       page.accept_confirm do
         click_on t('web.admin.bulletins.bulletin.archive'), match: :first
       end
@@ -59,7 +59,7 @@ class AdminSystemTest < ApplicationSystemTestCase
 
   test 'admin should add category' do
     click_on t('layouts.shared.nav.admin_panel')
-    click_on t('layouts.admin_panel_menu.categories')
+    click_on t('layouts.web.admin.admin_panel_menu.categories')
     click_on t('web.admin.categories.index.add_category')
     assert_text t('web.admin.categories.new.title')
 
@@ -73,7 +73,7 @@ class AdminSystemTest < ApplicationSystemTestCase
 
   test 'admin should make user admin' do
     click_on t('layouts.shared.nav.admin_panel')
-    click_on t('layouts.admin_panel_menu.users')
+    click_on t('layouts.web.admin.admin_panel_menu.users')
 
     user = users(:one)
     assert { !user.admin? }

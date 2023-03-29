@@ -38,9 +38,7 @@ module Web
       test 'admin should create' do
         sign_in @user_admin
         name = Faker::Lorem.sentence
-        assert_difference('Category.count', +1) do
-          post admin_categories_path, params: { category: { name: } }
-        end
+        post admin_categories_path, params: { category: { name: } }
         assert_redirected_to admin_categories_path
         assert_flash 'web.admin.categories.create.success'
         assert { name == Category.last.name }

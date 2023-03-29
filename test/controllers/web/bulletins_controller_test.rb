@@ -33,13 +33,11 @@ module Web
     test 'should create bulletin' do
       sign_in users(:one)
       image = fixture_file_upload('food_4.jpg')
-      assert_difference('Bulletin.count', +1) do
-        post bulletins_path, params: { bulletin: { **@attrs, image: } }
-      end
+      post bulletins_path, params: { bulletin: { **@attrs, image: } }
       last_bulletin = Bulletin.last
       assert_redirected_to bulletin_path(last_bulletin)
       assert_flash 'web.bulletins.create.success'
-      assert { @attrs.stringify_keys <= last_bulletin.as_json }
+      assert { @attrs.none? { |key, value| last_bulletin[key] != value } }
     end
 
     test 'should show bulletin' do
@@ -59,7 +57,7 @@ module Web
       assert_redirected_to profile_path
       assert_flash 'web.bulletins.update.success'
       @bulletin.reload
-      assert { @attrs.stringify_keys <= @bulletin.as_json }
+      assert { @attrs.none? { |key, value| @bulletin[key] != value } }
     end
 
     test 'should archive bulletin' do

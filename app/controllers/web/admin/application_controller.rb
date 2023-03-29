@@ -3,8 +3,6 @@
 module Web
   module Admin
     class ApplicationController < Web::ApplicationController
-      layout 'admin_panel'
-
       before_action :authorize_admin
 
       private

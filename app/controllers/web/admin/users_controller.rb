@@ -13,22 +13,18 @@ module Web
       def edit; end
 
       def update
-        respond_to do |format|
-          if @user.update(user_params)
-            format.html { redirect_to admin_users_url, notice: t('.success') }
-          else
-            format.html { render :edit, status: :unprocessable_entity }
-          end
+        if @user.update(user_params)
+          redirect_to admin_users_url, notice: t('.success')
+        else
+          render :edit, status: :unprocessable_entity
         end
       end
 
       def destroy
-        respond_to do |format|
-          if @user.destroy
-            format.html { redirect_to admin_users_url, status: :see_other, notice: t('.success') }
-          else
-            format.html { redirect_to admin_users_url, alert: t('.fail') }
-          end
+        if @user.destroy
+          redirect_to admin_users_url, status: :see_other, notice: t('.success')
+        else
+          redirect_to admin_users_url, alert: t('.fail')
         end
       end
 
