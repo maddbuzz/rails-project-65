@@ -2,6 +2,8 @@
 
 require 'test_helper'
 
+FIXTURE_IMAGE_FILE_NAME = 'food_4.jpg'
+
 module Web
   class BulletinsControllerTest < ActionDispatch::IntegrationTest
     setup do
@@ -32,12 +34,13 @@ module Web
 
     test 'should create bulletin' do
       sign_in users(:one)
-      image = fixture_file_upload('food_4.jpg')
+      image = fixture_file_upload(FIXTURE_IMAGE_FILE_NAME)
       post bulletins_path, params: { bulletin: { **@attrs, image: } }
       last_bulletin = Bulletin.last
       assert_redirected_to bulletin_path(last_bulletin)
       assert_flash 'web.bulletins.create.success'
       assert { @attrs.none? { |key, value| last_bulletin[key] != value } }
+      assert { image.original_filename == last_bulletin.image.filename.to_s }
     end
 
     test 'should show bulletin' do

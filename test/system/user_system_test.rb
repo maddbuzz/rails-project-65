@@ -60,10 +60,10 @@ class UserSystemTest < ApplicationSystemTestCase
     end
 
     last_bulletin = Bulletin.last
-    assert { last_bulletin.title == @bulletin.title }
-    assert { last_bulletin.description == @bulletin.description }
-    assert { last_bulletin.category == @bulletin.category }
-    assert { last_bulletin.image.filename == File.basename(FIXTURE_IMAGE_FILE_PATH) }
+    assert { @bulletin.title == last_bulletin.title }
+    assert { @bulletin.description == last_bulletin.description }
+    assert { @bulletin.category == last_bulletin.category }
+    assert { File.basename(FIXTURE_IMAGE_FILE_PATH) == last_bulletin.image.filename.to_s }
   end
 
   test 'should visit profile and update bulletin' do
