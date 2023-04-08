@@ -3,19 +3,37 @@ ru:
   user_not_authorized: Вы не авторизованы для выполнения этого действия
   user_not_admin: Вам необходимо быть администратором для выполнения этого действия
 
-  views:
-    pagination:
-      first: Первая
-      previous: Предыдущая
-      next: Следующая
-      last: Последняя
-
   bulletin_states:
     draft: Черновик
     under_moderation: На модерации
     published: Опубликовано
     rejected: Отклонено
     archived: В архиве
+
+  layouts:
+
+    shared:
+      head:
+        title: Доска объявлений
+      nav:
+        bulletin_board: Доска объявлений
+        main: Главная
+        my_bulletins: Мои объявления
+        new_bulletin: Добавить
+        admin_panel: Админка
+        log_out: Выйти
+        log_in: Войти
+      footer:
+        created_by: Проект
+        hexlet_student: 'студента "Хекслета"'
+
+    web:
+      admin:
+        admin_panel_menu:
+          ads_on_moderation: Объявления на модерации
+          all_ads: Все объявления
+          categories: Категории
+          users: Пользователи
 
   web:
 
