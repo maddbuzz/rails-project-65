@@ -26,9 +26,6 @@ jobs:
     - name: Install dependencies
       run: make install-without-production
 
-    - name: Run linters
-      run: make lint
-
     - name: Run tests & publish code coverage
       # https://github.com/paambaati/codeclimate-action
       uses: paambaati/codeclimate-action@v3.2.0
@@ -37,3 +34,6 @@ jobs:
       with:
         coverageCommand: make test-all-coverage
         debug: false
+
+    - name: Run linters
+      run: make lint
